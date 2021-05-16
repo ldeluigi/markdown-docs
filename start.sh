@@ -1,8 +1,10 @@
 #!/bin/sh
-SRC=/github/workspace/${1#/}
-DEST=${2#/}
-DEST=/github/workspace/${DEST%/}
-echo "Source: ${SRC}; Destination: ${DEST}"
+SRC=${1#.}
+SRC=${GITHUB_WORKSPACE%/}/${SRC#/}
+DEST=${2#.}
+DEST=${GITHUB_WORKSPACE%/}/${DEST#/}
+DEST=${DEST%/}
+echo "Source: ${SRC}; Destination: ${DEST}/"
 
 allowed_format() {
     grep -F -q -x ".${1#.}" <<EOF
@@ -18,7 +20,6 @@ allowed_format() {
 .Rmd
 EOF
 }
-
 
 if [ ! -d "${DEST}/" ] ; then
     >&2 echo "[ERROR] ${DEST} is not valid destination path"
