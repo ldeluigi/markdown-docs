@@ -17,7 +17,12 @@ COPY pymd_config.yml /pymd_config.yml
 
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
+RUN mkdir -p /github/workspace
 ENTRYPOINT [ "/start.sh" ]
 
 # DEBUG ONLY
-RUN mkdir /asd && touch /asd/start.md
+RUN touch /github/workspace/test.md
+RUN touch /github/workspace/test.mk
+RUN mkdir /github/workspace/test
+RUN touch /github/workspace/test/test.md
+RUN touch /github/workspace/test/test.mk

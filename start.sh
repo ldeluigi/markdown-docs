@@ -1,7 +1,8 @@
 #!/bin/sh
-SRC=$1
-DEST=${2%/}
-echo "Source: ${SRC}; Destination: ${DEST}/"
+SRC=/github/workspace/${1#/}
+DEST=${2#/}
+DEST=/github/workspace/${DEST%/}
+echo "Source: ${SRC}; Destination: ${DEST}"
 
 allowed_format() {
     grep -F -q -x ".${1#.}" <<EOF
