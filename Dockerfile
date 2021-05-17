@@ -20,7 +20,9 @@ COPY pymd_config.yml /pymd_config.yml
 
 # Utility scripts
 COPY allowed_format.sh /usr/local/bin/allowed_format.sh
+RUN chmod +x /usr/local/bin/allowed_format.sh
 COPY try_convert.sh /usr/local/bin/try_convert.sh
+RUN chmod +x /usr/local/bin/try_convert.sh
 
 COPY start.sh /start.sh
 RUN chmod +x /start.sh

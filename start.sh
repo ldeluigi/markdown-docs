@@ -13,14 +13,14 @@ if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
             echo "[INFO] Created output directory ${DEST}"
         else
             >&2 echo "[ERROR] ${DEST} is not valid destination path"
-        fi
             exit 1
+        fi
     fi
 
     if [ -d "${SRC}" ] ; then
         export PLANTUML_JAVAOPTS="-Dplantuml.include.path=${SRC}"
-        (cd "${SRC}" ; find * -type d ! -path .git ! -path .github -exec mkdir -p ${DEST}/{} \;)
-        (cd "${SRC}" ; find * -type f ! -path .git ! -path .github -exec try_convert.sh "${SRC}" "{}" "${DEST}/" \;)
+        (cd "${SRC}" ; find * -type d ! -path "${DEST}" ! -path .git ! -path .github -exec mkdir -p ${DEST}/{} \;)
+        (cd "${SRC}" ; find * -type f ! -path "${DEST}" ! -path .git ! -path .github -exec try_convert.sh "${SRC}" "{}" "${DEST}/" \;)
     else
         if [ -f "${SRC}" ]; then
             try_convert.sh "${SRC%/*}/" "${SRC##*/}" "${DEST}/"
