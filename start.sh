@@ -1,4 +1,6 @@
 #!/bin/sh
+set -e 
+set -o pipefail
 MODE="$1"
 if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
     SRC=${2#.}

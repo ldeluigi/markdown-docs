@@ -1,4 +1,6 @@
 #!/bin/sh
+set -e 
+set -o pipefail
 SRC="${1%/}/"
 FILE="${2#/}"
 DEST="${3%/}/"
