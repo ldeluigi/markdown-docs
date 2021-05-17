@@ -1,6 +1,5 @@
 plantuml_markdown:
   cachedir: /tmp                            # set a non-empty value to enable caching
-  base_dir: /wiki                           # where to search for diagrams to include
   format: svg_inline                               # default diagram image format
   classes: UML                              # default diagram classes
   title: UML diagram                        # default title (tooltip) for diagram images
