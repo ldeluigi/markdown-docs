@@ -9,8 +9,10 @@ if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
     echo "Source: ${SRC}; Destination: ${DEST}/"
 
     if [ ! -d "${DEST}/" ] ; then
-        >&2 echo "[ERROR] ${DEST} is not valid destination path"
-        exit 1
+        if ! mkdir -p "${DEST}" ; then
+            >&2 echo "[ERROR] ${DEST} is not valid destination path"
+            exit 1
+        fi
     fi
 
     if [ -d "${SRC}" ] ; then
