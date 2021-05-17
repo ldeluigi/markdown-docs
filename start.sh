@@ -21,12 +21,17 @@ if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
 
     if [ -d "${SRC}" ] ; then
         export PLANTUML_JAVAOPTS="-Dplantuml.include.path=${SRC}"
+        TOC="${SRC}content.md"
         if [ ! -f "${SRC}/index.md" ] ; then
             echo "Index file (index.md) not found. It will be created using a script..."
-            (cd "${SRC}" ; python /usr/local/src/toc.py)
+            (cd "${SRC}" ; python /usr/local/src/toc.py index.md)
+        fi
+        if [ ! -f "${TOC}" ] ; then
+            echo "TOC file (content.md) not found. It will be created using a script..."
+            (cd "${SRC}" ; python /usr/local/src/toc.py content.md)
         fi
         (cd "${SRC}" ; find * \( -path "${DEST#"${SRC}"}" -o -path .git -o -path .github \) -prune -o -type d -exec mkdir -p ${DEST}/{} \;)
-        (cd "${SRC}" ; find * \( -path "${DEST#"${SRC}"}" -o -path .git -o -path .github \) -prune -o -type f -exec try_convert.sh "${SRC}" "{}" "${DEST}/" \;)
+        (cd "${SRC}" ; find * \( -path "${DEST#"${SRC}"}" -o -path .git -o -path .github \) -prune -o -type f -exec test ! "{}" = "content.md" \; -exec sh -c cat "${TOC}" "${SRC}{}" '>' "${SRC}{}" \; -exec try_convert.sh "${SRC}" "{}" "${DEST}/" \;)
     else
         if [ -f "${SRC}" ]; then
             try_convert.sh "${SRC%/*}/" "${SRC##*/}" "${DEST}/"
