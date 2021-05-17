@@ -59,6 +59,8 @@ jobs:
     needs:
       - push-to-registries
     steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
       - name: Run action
         uses: ./
         with:
