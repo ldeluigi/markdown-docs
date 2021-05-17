@@ -5,9 +5,10 @@ MODE="$1"
 if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
     SRC=${2#.}
     SRC=${GITHUB_WORKSPACE%/}/${SRC#/}
-    DEST=${3#.}
-    DEST=${GITHUB_WORKSPACE%/}/${DEST#/}
-    DEST=${DEST%/}
+    RELATIVE_DEST=${3#.}
+    RELATIVE_DEST=${RELATIVE_DEST#/}
+    RELATIVE_DEST=${RELATIVE_DEST%/}
+    DEST=${GITHUB_WORKSPACE%/}/${RELATIVE_DEST}
     echo "Source: ${SRC}; Destination: ${DEST}/"
 
     if [ ! -d "${DEST}/" ] ; then
@@ -21,8 +22,8 @@ if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
 
     if [ -d "${SRC}" ] ; then
         export PLANTUML_JAVAOPTS="-Dplantuml.include.path=${SRC}"
-        (cd "${SRC}" ; find * -type d ! -path "${DEST}" ! -path .git ! -path .github -exec mkdir -p ${DEST}/{} \;)
-        (cd "${SRC}" ; find * -type f ! -path "${DEST}" ! -path .git ! -path .github -exec try_convert.sh "${SRC}" "{}" "${DEST}/" \;)
+        (cd "${SRC}" ; find * -type d ! -path "${RELATIVE_DEST}" ! -path .git ! -path .github -exec mkdir -p ${DEST}/{} \;)
+        (cd "${SRC}" ; find * -type f ! -path "${RELATIVE_DEST}" ! -path .git ! -path .github -exec try_convert.sh "${SRC}" "{}" "${DEST}/" \;)
     else
         if [ -f "${SRC}" ]; then
             try_convert.sh "${SRC%/*}/" "${SRC##*/}" "${DEST}/"
