@@ -21,6 +21,10 @@ if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
 
     if [ -d "${SRC}" ] ; then
         export PLANTUML_JAVAOPTS="-Dplantuml.include.path=${SRC}"
+        if [ ! -f "${SRC}/index.md" ] ; then
+            echo "Index file (index.md) not found. It will be created using a script..."
+            (cd "${SRC}" ; python /usr/local/src/toc.py)
+        fi
         (cd "${SRC}" ; find * \( -path "${DEST#"${SRC}"}" -o -path .git -o -path .github \) -prune -o -type d -exec mkdir -p ${DEST}/{} \;)
         (cd "${SRC}" ; find * \( -path "${DEST#"${SRC}"}" -o -path .git -o -path .github \) -prune -o -type f -exec try_convert.sh "${SRC}" "{}" "${DEST}/" \;)
     else

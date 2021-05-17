@@ -24,6 +24,7 @@ COPY allowed_format.sh /usr/local/bin/allowed_format.sh
 RUN chmod +x /usr/local/bin/allowed_format.sh
 COPY try_convert.sh /usr/local/bin/try_convert.sh
 RUN chmod +x /usr/local/bin/try_convert.sh
+ADD https://gist.githubusercontent.com/elfnor/bc2176b3fad8581c678b771afb1e3b3e/raw/7d7e90c049091018752cb53d9ba9912d61de290c/md_file_tree.py /usr/local/src/toc.py
 
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
