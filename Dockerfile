@@ -30,3 +30,15 @@ COPY start.sh /start.sh
 RUN chmod +x /start.sh
 RUN mkdir -p /github/workspace
 ENTRYPOINT [ "/start.sh" ]
+
+RUN touch /github/workspace/test.md \
+&& touch /github/workspace/test.mk \
+&& mkdir /github/workspace/test \
+&& mkdir /github/workspace/test/asd \
+&& mkdir /github/workspace/test/asd/topkek \
+&& touch /github/workspace/test/test.md \
+&& touch /github/workspace/test/test.mk \
+&& touch /github/workspace/test/test.md \
+&& touch /github/workspace/test/test.mk \
+&& echo "# Ok" > /github/workspace/test/asd/topkek/test.md \
+&& touch /github/workspace/test/asd/topkek/test.mk
