@@ -54,6 +54,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
   update-gh-pages:
+    name: Generate and upload new GitHub Pages
     runs-on: ubuntu-latest
     needs:
       - push-to-registries
