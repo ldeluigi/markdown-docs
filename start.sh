@@ -13,8 +13,8 @@ if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
             echo "[INFO] Created output directory ${DEST}"
         else
             >&2 echo "[ERROR] ${DEST} is not valid destination path"
-            exit 1
         fi
+            exit 1
     fi
 
     if [ -d "${SRC}" ] ; then
