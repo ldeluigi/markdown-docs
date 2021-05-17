@@ -14,7 +14,7 @@ if [ -f "${SRC}${FILE}" ]; then
     if allowed_format.sh "$FORMAT" ; then
         # Add TOC if present as fourth arg
         if [ -f "$4" -a ! "${FILE}" = "contents.md" ] ; then
-            TMP_FILE="${FILE##*/}"
+            TMP_FILE="$(cat /proc/sys/kernel/random/uuid)"
             cat "$4" "${SRC}${FILE}" > "${TMP_DIR}${TMP_FILE}"
             mv "${TMP_DIR}${TMP_FILE}" "${SRC}${FILE}"
         fi
