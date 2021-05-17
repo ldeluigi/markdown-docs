@@ -16,7 +16,7 @@ inputs:
     default: 'docs'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'deloo/markdown-docs'
   args:
     - ${{ inputs.mode }}
     - ${{ inputs.src }}
