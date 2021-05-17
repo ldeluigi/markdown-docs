@@ -14,6 +14,7 @@ ENV ALLOW_PLANTUML_INCLUDE=true
 RUN wget -q -O plantuml.jar https://nav.dl.sourceforge.net/project/plantuml/plantuml.jar
 RUN mkdir -p /opt/plantuml && mv plantuml.jar /opt/plantuml/plantuml.jar
 COPY plantuml.sh /usr/local/bin/plantuml 
+RUN chmod +x /usr/local/bin/plantuml
 
 # Configure Python Markdown
 COPY pymd_config.yml /pymd_config.yml
