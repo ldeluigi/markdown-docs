@@ -1,0 +1,7 @@
+plantuml_markdown:
+  cachedir: /tmp                            # set a non-empty value to enable caching
+  format: svg_inline                               # default diagram image format
+  classes: UML                              # default diagram classes
+  title: UML diagram                        # default title (tooltip) for diagram images
+  alt: UML diagram image                    # default `alt` attribute for diagram images
+  priority: 23                              # plugin priority; the higher, the sooner will be applied (default 23)
