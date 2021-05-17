@@ -29,3 +29,14 @@ COPY start.sh /start.sh
 RUN chmod +x /start.sh
 RUN mkdir -p /github/workspace
 ENTRYPOINT [ "/start.sh" ]
+
+# DEBUG ONLY
+RUN touch /github/workspace/test.md
+RUN touch /github/workspace/test.mk
+RUN mkdir /github/workspace/test
+RUN mkdir /github/workspace/test/asd
+RUN mkdir /github/workspace/test/asd/topkek
+RUN touch /github/workspace/test/test.md
+RUN touch /github/workspace/test/test.mk
+RUN touch /github/workspace/test/asd/topkek/test.md
+RUN touch /github/workspace/test/asd/topkek/test.mk
