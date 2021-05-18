@@ -25,7 +25,7 @@ if [ -f "${SRC}${FILE}" ]; then
         ESCAPED_CSS=""
         for CSS_FILE in "${SRC}"css/*.css; do
             [ -e "$CSS_FILE" ] || continue
-            ESCAPED_CSS=$(printf '%s\n' "${ESCAPED_CSS}<link rel=\"stylesheet\" href=\"css/${CSS_FILE##*/}\">\n  " | sed -e 's/[\/&]/\\&/g')
+            ESCAPED_CSS=$(printf '%s\n' "${ESCAPED_CSS}<link rel=\"stylesheet\" href=\"css/${CSS_FILE##*/}\">  " | sed -e 's/[\/&]/\\&/g')
         done
 
         RESULTNAME="${BASENAME}.html"
