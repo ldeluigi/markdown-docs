@@ -25,7 +25,7 @@ if [ -f "${SRC}${FILE}" ]; then
         sed -i -r 's/\[\[(.*?)\.(markdown|mdown|mkdn|md|mkd|mdwn|mdtxt|mdtext|text)\]\]/[[\1.html]]/g' "${TMP_DIR}${TMP_FILE}"
         sed -i -r 's/\[(.*)\]\((.*)\.(markdown|mdown|mkdn|md|mkd|mdwn|mdtxt|mdtext|text)\)/[\1](\2.html)/g' "${TMP_DIR}${TMP_FILE}"
         cat "${TMP_DIR}${TMP_FILE}"
-        markdown_py -x plantuml_markdown -c /pymd_config.yml "${TMP_DIR}${TMP_FILE}" > "${DEST}${RESULTNAME}"
+        markdown_py -x tables -x toc -x plantuml_markdown -c /pymd_config.yml "${TMP_DIR}${TMP_FILE}" > "${DEST}${RESULTNAME}"
     else
         cp -f "${SRC}${FILE}" "${DEST}${FILE}"
     fi
