@@ -53,8 +53,9 @@ if [ -f "${SRC}${FILE}" ]; then
         sed -i -e "/___BODY___/r ${TMP_DIR}${TMP_FILE}" "${DEST}${RESULTNAME}"
         sed -i '1,/___BODY___/s///' "${DEST}${RESULTNAME}"
     else
-        :
-        # cp -f "${SRC}${FILE}" "${DEST}${FILE}"
+        if resource_format.sh "$FORMAT" ; then
+            cp -f "${SRC}${FILE}" "${DEST}${FILE}"
+        fi
     fi
 else
     >&2 echo "[ERROR] ${SRC}${FILE} is not a file";

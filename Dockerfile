@@ -22,6 +22,8 @@ COPY config/pymd_config.yml /pymd_config.yml
 # Utility scripts
 COPY script/allowed_format.sh /usr/local/bin/allowed_format.sh
 RUN chmod +x /usr/local/bin/allowed_format.sh
+COPY script/resource_format.sh /usr/local/bin/resource_format.sh
+RUN chmod +x /usr/local/bin/resource_format.sh
 COPY script/try_convert.sh /usr/local/bin/try_convert.sh
 RUN chmod +x /usr/local/bin/try_convert.sh
 ADD script/md_file_tree.py /usr/local/src/toc.py
