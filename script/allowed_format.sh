@@ -11,4 +11,6 @@ grep -F -q -x ".${1#.}" <<EOF
 .mdtext
 .text
 .Rmd
+.css
+.js
 EOF
