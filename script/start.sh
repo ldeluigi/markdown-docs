@@ -30,6 +30,11 @@ if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
             echo "TOC file (contents.md) not found. It will be created using a script..."
             (cd "${SRC}" ; python /usr/local/src/toc.py "${TOC}")
         fi
+        if [ ! -f "${SRC}/css/style.css" ] ; then
+            echo "Main CSS style file (css/style.css) not found. It will be created using a script..."
+            mkdir -p "${SRC}/css"
+            cp /usr/local/src/style.css "${SRC}/css/style.css"
+        fi
         (cd "${SRC}" ; find * \( -path "${DEST#"${SRC}"}" -o -path .git -o -path .github \) -prune -o -type d -exec mkdir -p ${DEST}/{} \;)
         (cd "${SRC}" ; find * \( -path "${DEST#"${SRC}"}" -o -path .git -o -path .github \) -prune -o -type f -exec try_convert.sh "${SRC}" "{}" "${DEST}/" "${TOC}" \;)
     else

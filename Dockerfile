@@ -13,23 +13,25 @@ RUN mkdir -p /usr/share/man/man1 && apk add -q openjdk11 maven graphviz
 ENV ALLOW_PLANTUML_INCLUDE=true
 RUN wget -q -O plantuml.jar https://netcologne.dl.sourceforge.net/project/plantuml/plantuml.jar
 RUN mkdir -p /opt/plantuml && mv plantuml.jar /opt/plantuml/plantuml.jar
-COPY plantuml.sh /usr/local/bin/plantuml 
+COPY script/plantuml.sh /usr/local/bin/plantuml 
 RUN chmod +x /usr/local/bin/plantuml
 
 # Configure Python Markdown
-COPY pymd_config.yml /pymd_config.yml
+COPY config/pymd_config.yml /pymd_config.yml
 
 # Utility scripts
-COPY allowed_format.sh /usr/local/bin/allowed_format.sh
+COPY script/allowed_format.sh /usr/local/bin/allowed_format.sh
 RUN chmod +x /usr/local/bin/allowed_format.sh
-COPY try_convert.sh /usr/local/bin/try_convert.sh
+COPY script/try_convert.sh /usr/local/bin/try_convert.sh
 RUN chmod +x /usr/local/bin/try_convert.sh
-ADD md_file_tree.py /usr/local/src/toc.py
+ADD script/md_file_tree.py /usr/local/src/toc.py
 
 # CSS
 COPY css/style.css /usr/local/src/style.css
+# HTML
+COPY html/template.html /usr/local/src/template.html
 
-COPY start.sh /start.sh
+COPY script/start.sh /start.sh
 RUN chmod +x /start.sh
 RUN mkdir -p /github/workspace
 ENTRYPOINT [ "/start.sh" ]

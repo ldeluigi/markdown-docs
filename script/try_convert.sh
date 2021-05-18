@@ -19,13 +19,23 @@ if [ -f "${SRC}${FILE}" ]; then
         else
             cp "${SRC}${FILE}" "${TMP_DIR}${TMP_FILE}"
         fi
+        ESCAPED_CSS=""
+        for CSS_FILE in "${SRC}"css/*.css; do
+            [ -e "$CSS_FILE" ] || continue
+            ESCAPED_CSS=$(printf '%s\n' "${ESCAPED_CSS}<link rel=\"stylesheet\" href=\"css/${CSS_FILE##*/}\">\n  " | sed -e 's/[\/&]/\\&/g')
+        done
         RESULTNAME="${BASENAME}.html"
         echo "Converting ${SRC}${FILE} to ${DEST}${RESULTNAME}..."
-        cat "${TMP_DIR}${TMP_FILE}"
         sed -i -r 's/\[\[(.*?)\.(markdown|mdown|mkdn|md|mkd|mdwn|mdtxt|mdtext|text)\]\]/[[\1.html]]/g' "${TMP_DIR}${TMP_FILE}"
         sed -i -r 's/\[(.*)\]\((.*)\.(markdown|mdown|mkdn|md|mkd|mdwn|mdtxt|mdtext|text)\)/[\1](\2.html)/g' "${TMP_DIR}${TMP_FILE}"
-        cat "${TMP_DIR}${TMP_FILE}"
         markdown_py -x tables -x toc -x plantuml_markdown -c /pymd_config.yml "${TMP_DIR}${TMP_FILE}" > "${DEST}${RESULTNAME}"
+        ESCAPED_TITLE=$(printf '%s\n' "${GITHUB_REPOSITORY:-Documentation}" | sed -e 's/[\/&]/\\&/g')
+        cp "${DEST}${RESULTNAME}" "${TMP_DIR}${TMP_FILE}"
+        cp /usr/local/src/template.html "${DEST}${RESULTNAME}"
+        sed -i "s/___CSS___/${ESCAPED_CSS}/g" "${DEST}${RESULTNAME}"
+        sed -i "s/___TITLE___/${ESCAPED_TITLE}/g" "${DEST}${RESULTNAME}"
+        sed -i -e "/___BODY___/r ${TMP_DIR}${TMP_FILE}" "${DEST}${RESULTNAME}"
+        sed -i "s/___BODY___//g" "${DEST}${RESULTNAME}"
     else
         cp -f "${SRC}${FILE}" "${DEST}${FILE}"
     fi
