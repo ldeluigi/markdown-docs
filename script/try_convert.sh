@@ -51,8 +51,9 @@ if [ -f "${SRC}${FILE}" ]; then
         sed -i "s/___CSS___/${ESCAPED_CSS}/g" "${DEST}${RESULTNAME}"
         sed -i "s/___TITLE___/${ESCAPED_TITLE}/g" "${DEST}${RESULTNAME}"
         sed -i -e "/___BODY___/r ${TMP_DIR}${TMP_FILE}" "${DEST}${RESULTNAME}"
-        sed -i '0,/___BODY___/{s/___BODY___//}' "${DEST}${RESULTNAME}"
+        sed -i '1,/___BODY___/s///' "${DEST}${RESULTNAME}"
     else
+        :
         # cp -f "${SRC}${FILE}" "${DEST}${FILE}"
     fi
 else
