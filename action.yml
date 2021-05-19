@@ -1,6 +1,9 @@
 name: 'Markdown Docs'
 author: ldeluigi
-description: ''
+description: 'Generates file based on documentation written in Markdown (with support for TOC, tables, PlantUML) based on Python Markdown'
+branding:
+  icon: 'file-text'
+  color: 'gray-dark'
 inputs:
   mode:
     description: 'Can be "Markdown" or "md" to generate GitHub compliant markdown files or "HTML" or "gh-pages" to generate a static website'
