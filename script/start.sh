@@ -23,7 +23,7 @@ if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
     # Source directory
     if [ -d "${SRC}" ] ; then
         export PLANTUML_JAVAOPTS="-Dplantuml.include.path=${SRC}"
-        TOC="${SRC}contents.md"
+        TOC="${SRC}/contents.md"
 
         # TOC of the docs allows global navigation between files so it's mandatory
         if [ ! -f "${TOC}" ] ; then
@@ -34,7 +34,7 @@ if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
         # Index is the entrypoint of every website so it's mandatory
         if [ ! -f "${SRC}/index.md" ] ; then
             echo "Index file (index.md) not found. It will be created using a script..."
-            echo "# ${GITHUB_REPOSITORY:-Documentation}" > "${SRC}index.md"
+            echo "# ${GITHUB_REPOSITORY:-Documentation}" > "${SRC}/index.md"
         fi
 
         # Styling should be provided inside a "css" folder but the default, base style file should be called style.css.
