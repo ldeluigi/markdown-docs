@@ -15,28 +15,34 @@ if [ -f "${SRC}${FILE}" ]; then
     # Check file format
     if allowed_format.sh "$FORMAT" ; then
         TMP_FILE="$(cat /proc/sys/kernel/random/uuid)"
+        
+        RESULTNAME="${BASENAME}.html"
+        echo "Converting ${SRC}${FILE} to ${DEST}${RESULTNAME}..."
+
         # Add TOC if present as fourth arg
         if [ -f "$4" -a ! "${FILE}" = "contents.md" ] ; then
-            cat "$4" "${SRC}${FILE}" > "${TMP_DIR}${TMP_FILE}"
+            cp "$4" "${TMP_DIR}${TMP_FILE}"
+            # Convert TOC markdown to HTML
+            { echo -e "<div class=\"toc\">\n" ; markdown_py "${TMP_DIR}${TMP_FILE}" ; echo -e "\n</div>\n" ; } > "${DEST}${RESULTNAME}"
         else
-            cp "${SRC}${FILE}" "${TMP_DIR}${TMP_FILE}"
+            touch "${DEST}${RESULTNAME}"
         fi
+
+        # Prepare source markdown
+        cp "${SRC}${FILE}" "${TMP_DIR}${TMP_FILE}"
+
         # Load CSS stylesheets inside the css folder
         ESCAPED_CSS=""
         for CSS_FILE in "${SRC}"css/*.css; do
             [ -e "$CSS_FILE" ] || continue
             ESCAPED_CSS=$(printf '%s\n' "${ESCAPED_CSS}<link rel=\"stylesheet\" href=\"css/${CSS_FILE##*/}\">  " | sed -e 's/[\/&]/\\&/g')
         done
-
-        RESULTNAME="${BASENAME}.html"
-        echo "Converting ${SRC}${FILE} to ${DEST}${RESULTNAME}..."
+        
+        # Convert markdown to HTML
+        markdown_py -x tables -x toc -x plantuml_markdown -c /pymd_config.yml "${TMP_DIR}${TMP_FILE}" >> "${DEST}${RESULTNAME}"
 
         # Change links to point to html files instead of markdown
-        sed -i -r 's/\[\[(.*?)\.(markdown|mdown|mkdn|md|mkd|mdwn|mdtxt|mdtext|text)\]\]/[[\1.html]]/g' "${TMP_DIR}${TMP_FILE}"
-        sed -i -r 's/\[(.*)\]\((.*)\.(markdown|mdown|mkdn|md|mkd|mdwn|mdtxt|mdtext|text)\)/[\1](\2.html)/g' "${TMP_DIR}${TMP_FILE}"
-
-        # Convert markdown to HTML
-        markdown_py -x tables -x toc -x plantuml_markdown -c /pymd_config.yml "${TMP_DIR}${TMP_FILE}" > "${DEST}${RESULTNAME}"
+        sed -i -r 's/(<a.+href=["'"'"'][\/\.].+\.)(markdown|mdown|mkdn|md|mkd|mdwn|mdtxt|mdtext|text)(["'"'"'].*>)/\1html\3/g' "${DEST}${RESULTNAME}"
 
         # Fetch a title
         ESCAPED_TITLE=$(printf '%s\n' "${GITHUB_REPOSITORY:-Documentation}" | sed -e 's/[\/&]/\\&/g')
