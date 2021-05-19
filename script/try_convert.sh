@@ -19,21 +19,15 @@ if [ -f "${SRC}${FILE}" ]; then
         RESULTNAME="${BASENAME}.html"
         echo "Converting ${SRC}${FILE} to ${DEST}${RESULTNAME}..."
 
-        # Add TOC if present as fourth arg
-        if [ -f "$4" -a ! "${FILE}" = "contents.md" ] ; then
-            cp "$4" "${TMP_DIR}${TMP_FILE}"
-            # Convert TOC markdown to HTML
-            { echo -e "<div class=\"toc\">\n" ; markdown_py "${TMP_DIR}${TMP_FILE}" ; echo -e "\n</div>\n" ; } > "${DEST}${RESULTNAME}"
-        else
-            touch "${DEST}${RESULTNAME}"
-        fi
-
-        # Prepare source markdown
-        cp "${SRC}${FILE}" "${TMP_DIR}${TMP_FILE}"
-
         # Calculate depth for resource linking
         FILE_SLASHES=${FILE//[!\/]}
         FILE_DEPTH_PARENTS=${FILE_SLASHES//\//../}
+
+        # Add navbar
+        echo -e "<nav><a href=\"${FILE_DEPTH_PARENTS}contents.html\">TOC</a>\n<a href=\"${FILE_DEPTH_PARENTS}index.html\">HOME</a></nav>\n" > "${DEST}${RESULTNAME}"
+
+        # Prepare source markdown
+        cp "${SRC}${FILE}" "${TMP_DIR}${TMP_FILE}"
 
         # Load CSS stylesheets inside the css folder
         ESCAPED_CSS=""
