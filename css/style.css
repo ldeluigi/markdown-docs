@@ -1,3 +1,33 @@
+.toc {
+  float: right;
+  width: 40%;
+  font-size: 0.8em;
+  padding: 1em 2em;
+  margin: 0 0 0.5em 0.5em;
+}
+.toc ul {
+  padding: 0;
+}
+.toc li {
+  margin: 0 0 0.25em 0;
+}
+.toc a {
+  text-decoration: none;
+}
+.toc a:hover,
+.toc a:active {
+  text-decoration: underline;
+}
+
+@keyframes highlight {
+  from { background: yellow; }
+  to { background: rgba(0, 0, 0, 0); }
+}
+
+h1:target, h2:target, h3:target, h4:target {
+  animation: highlight 1s ease;
+}
+
 @media print {
     *,
     *:before,
@@ -419,4 +449,27 @@
     border-left: 3px solid #01ff70;
     padding-left: 1rem;
     }
+}
+
+nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+nav a, nav a:visited {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav a.right { float: right; }
+
+@media screen and (max-width: 600px) {
+  nav a { float: none; }
 }
