@@ -31,11 +31,15 @@ if [ -f "${SRC}${FILE}" ]; then
         # Prepare source markdown
         cp "${SRC}${FILE}" "${TMP_DIR}${TMP_FILE}"
 
+        # Calculate depth for resource linking
+        FILE_SLASHES=${FILE//[!\/]}
+        FILE_DEPTH_PARENTS=${FILE_SLASHES//\//../}
+
         # Load CSS stylesheets inside the css folder
         ESCAPED_CSS=""
         for CSS_FILE in "${SRC}"css/*.css; do
             [ -e "$CSS_FILE" ] || continue
-            ESCAPED_CSS=$(printf '%s\n' "${ESCAPED_CSS}<link rel=\"stylesheet\" href=\"css/${CSS_FILE##*/}\">  " | sed -e 's/[\/&]/\\&/g')
+            ESCAPED_CSS=$(printf '%s\n' "${ESCAPED_CSS}<link rel=\"stylesheet\" href=\"${FILE_DEPTH_PARENTS}css/${CSS_FILE##*/}\">  " | sed -e 's/[\/&]/\\&/g')
         done
         
         # Convert markdown to HTML
