@@ -1,13 +1,14 @@
 #!/bin/sh
 set -e 
 MODE="$1"
+WORKSPACE="${WORKSPACE:-${GITHUB_WORKSPACE:-/}}"
 if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
     SRC=${2#.}
-    SRC=${GITHUB_WORKSPACE%/}/${SRC#/}
+    SRC=${WORKSPACE%/}/${SRC#/}
     RELATIVE_DEST=${3#.}
     RELATIVE_DEST=${RELATIVE_DEST#/}
     RELATIVE_DEST=${RELATIVE_DEST%/}
-    DEST=${GITHUB_WORKSPACE%/}/${RELATIVE_DEST}
+    DEST=${WORKSPACE%/}/${RELATIVE_DEST}
     echo "Source: ${SRC}; Destination: ${DEST}/"
 
     # Output directory

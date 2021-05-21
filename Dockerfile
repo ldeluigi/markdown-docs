@@ -35,9 +35,9 @@ COPY html/template.html /usr/local/src/template.html
 
 COPY script/start.sh /start.sh
 RUN chmod +x /start.sh
-RUN mkdir -p /github/workspace
 ENTRYPOINT [ "/start.sh" ]
 
+# RUN mkdir -p /github/workspace
 # RUN touch /github/workspace/test.md \
 # && touch /github/workspace/test.mk \
 # && mkdir /github/workspace/test \
