@@ -113,7 +113,7 @@ def create_index(cwd, headings=False, wikilinks=False):
                                                             TOC_LIST_PREFIX))
             rel_dir = '.{1}{0}'.format(os.sep, root[base_len:])
             for md_filename in files:
-                indent = '  ' * level
+                indent = '  ' * (level + 1)
                 if wikilinks:
                     md_lines.append('{0} {3} [[{2}{1}]]\n'.format(indent,
                                                                   os.path.splitext(md_filename)[0],
