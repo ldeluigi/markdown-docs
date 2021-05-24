@@ -423,6 +423,7 @@ nav a.right {
 
 .toc ul {
   list-style-type: none;
+  padding: 0;
 }
 
 .toc li.uncollapsible {
@@ -481,7 +482,6 @@ nav a.right {
 .toc ul.content-inner {
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
-  padding-left: 3rem;
 }
 
 @keyframes highlight {

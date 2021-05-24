@@ -56,7 +56,11 @@ if [ -f "${SRC}${FILE}" ]; then
         cp "${DEST}${RESULTNAME}" "${TMP_DIR}${TMP_FILE}"
         
         # Copy the html template to destination
-        cp /usr/local/src/template.html "${DEST}${RESULTNAME}"
+        if [ "${FILE}" = "contents.md" ] ; then
+            cp /usr/local/src/contents_template.html "${DEST}${RESULTNAME}"
+        else
+            cp /usr/local/src/template.html "${DEST}${RESULTNAME}"
+        fi
 
         # Substitute strings
         sed -i "s/___CSS___/${ESCAPED_CSS}/g" "${DEST}${RESULTNAME}"

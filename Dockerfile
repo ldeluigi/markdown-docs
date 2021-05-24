@@ -30,6 +30,7 @@ ADD script/md_file_tree.py /usr/local/src/toc.py
 
 # HTML
 COPY html/template.html /usr/local/src/template.html
+COPY html/contents_template.html /usr/local/src/contents_template.html
 # CSS
 COPY css/style.css /usr/local/src/style.css
 # JS
