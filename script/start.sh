@@ -30,12 +30,14 @@ if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
         if [ ! -f "${TOC}" ] ; then
             echo "TOC file (contents.md) not found. It will be created using a script..."
             (cd "${SRC}" ; python /usr/local/src/toc.py "${TOC}")
+            CLEAN_TOC=true
         fi
 
         # Index is the entrypoint of every website so it's mandatory
         if [ ! -f "${SRC}/index.md" ] ; then
             echo "Index file (index.md) not found. It will be created using a script..."
             echo "# ${GITHUB_REPOSITORY:-Documentation}" > "${SRC}/index.md"
+            CLEAN_INDEX=true
         fi
 
         # Styling should be provided inside a "css" folder but the default, base style file should be called style.css.
@@ -44,6 +46,7 @@ if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
             echo "Main CSS style file (css/style.css) not found. It will be created using a script..."
             mkdir -p "${SRC}/css"
             cp /usr/local/src/style.css "${SRC}/css/style.css"
+            CLEAN_STYLE=true
         fi
 
         # Javascript should be provided inside a "js" folder but the default, base script file should be called script.js.
@@ -52,6 +55,7 @@ if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
             echo "Main JS script file (js/script.js) not found. It will be created using a script..."
             mkdir -p "${SRC}/js"
             cp /usr/local/src/script.js "${SRC}/js/script.js"
+            CLEAN_SCRIPT=true
         fi
 
         # Mirrors the directory structure
@@ -67,6 +71,24 @@ if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
             >&2 echo "[ERROR] ${SRC} is not valid source";
             exit 1
         fi
+    fi
+
+    if [ "${CLEAN_TOC}" = true ] ; then
+        rm "${TOC}"
+    fi
+
+    if [ "${CLEAN_INDEX}" = true ] ; then
+        rm "${SRC}/index.md"
+    fi
+
+    if [ "${CLEAN_STYLE}" = true ] ; then
+        rm "${SRC}/css/style.css"
+        find "${SRC}/css" -type d -empty -delete
+    fi
+
+    if [ "${CLEAN_SCRIPT}" = true ] ; then
+        rm "${SRC}/js/script.js"
+        find "${SRC}/js" -type d -empty -delete
     fi
 
     # Print results
