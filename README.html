@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>ldeluigi/markdown-docs</title>
   <link rel="stylesheet" href="css/style.css">  
+  <script defer src="js/script.js"></script>  
 </head>
 <body>
 
@@ -14,13 +15,32 @@
 <div class="toc">
 <ul>
 <li><a href="#markdown-docs">Markdown Docs</a><ul>
-<li><a href="#subheader">Subheader</a></li>
+<li><a href="#usage">Usage</a><ul>
+<li><a href="#as-github-action">As GitHub Action</a></li>
+<li><a href="#as-docker-builder">As Docker builder</a></li>
+</ul>
+</li>
+<li><a href="#documentation">Documentation</a><ul>
+<li><a href="#markdown">Markdown</a></li>
+<li><a href="#entrypoint-indexmd">Entrypoint: index.md</a></li>
+<li><a href="#contents-contentsmd">Contents: contents.md</a></li>
+<li><a href="#custom-css-cssstylecss">Custom CSS: css/style.css</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 <h1 id="markdown-docs">Markdown Docs</h1>
-<p>WIP</p>
-<h2 id="subheader">Subheader</h2>
+<p>This repository contains the definition of a Docker image that can be used both as a <strong><a href="#as-docker-builder">builder</a></strong> stage and as an <strong><a href="#as-github-action">action</a></strong>.</p>
+<p>Markdown docs is implemented as a jam of shell scripts, python scripts and python utilities like <a href="https://github.com/Python-Markdown/markdown">Python Markdown</a>, with some additional plugins like <a href="https://python-markdown.github.io/extensions/toc/">Table of Contents</a>, <a href="https://python-markdown.github.io/extensions/tables/">Tables</a> and, on top of all, <a href="https://github.com/mikitex70/plantuml-markdown">PlantUML Markdown</a>. This extension enables the inclusion of PlantUML diagrams (UML, JSON...) rendered <em>inline</em> inside your website. It also supports the <code>!include</code> directive for PlantUML reuse of code.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="as-github-action">As GitHub Action</h3>
+<h3 id="as-docker-builder">As Docker builder</h3>
+<h2 id="documentation">Documentation</h2>
+<h3 id="markdown">Markdown</h3>
+<h3 id="entrypoint-indexmd">Entrypoint: <code>index.md</code></h3>
+<h3 id="contents-contentsmd">Contents: <code>contents.md</code></h3>
+<h3 id="custom-css-cssstylecss">Custom CSS: <code>css/style.css</code></h3>
 </body>
 </html>
