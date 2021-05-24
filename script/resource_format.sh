@@ -2,6 +2,7 @@
 # Checks that first argument is the extension name of a markdown file
 grep -F -q -x ".${1#.}" <<EOF
 .css
+.js
 .png
 .jpg
 .jpeg

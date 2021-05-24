@@ -28,10 +28,12 @@ COPY script/try_convert.sh /usr/local/bin/try_convert.sh
 RUN chmod +x /usr/local/bin/try_convert.sh
 ADD script/md_file_tree.py /usr/local/src/toc.py
 
-# CSS
-COPY css/style.css /usr/local/src/style.css
 # HTML
 COPY html/template.html /usr/local/src/template.html
+# CSS
+COPY css/style.css /usr/local/src/style.css
+# JS
+COPY js/script.js /usr/local/src/script.js
 
 COPY script/start.sh /start.sh
 RUN chmod +x /start.sh

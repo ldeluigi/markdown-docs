@@ -46,6 +46,14 @@ if [ "$MODE" = "HTML" -o "$MODE" = "html" -o "$MODE" = "gh-pages" ] ; then
             cp /usr/local/src/style.css "${SRC}/css/style.css"
         fi
 
+        # Javascript should be provided inside a "js" folder but the default, base script file should be called script.js.
+        # If absent, one default js file is provided.
+        if [ ! -f "${SRC}/js/script.js" ] ; then
+            echo "Main JS script file (js/script.js) not found. It will be created using a script..."
+            mkdir -p "${SRC}/js"
+            cp /usr/local/src/script.js "${SRC}/js/script.js"
+        fi
+
         # Mirrors the directory structure
         (cd "${SRC}" ; find * \( -path "${DEST#"${SRC}"}" -o -path .git -o -path .github \) -prune -o -type d -exec mkdir -p ${DEST}/{} \;)
 

@@ -35,6 +35,13 @@ if [ -f "${SRC}${FILE}" ]; then
             [ -e "$CSS_FILE" ] || continue
             ESCAPED_CSS=$(printf '%s\n' "${ESCAPED_CSS}<link rel=\"stylesheet\" href=\"${FILE_DEPTH_PARENTS}css/${CSS_FILE##*/}\">  " | sed -e 's/[\/&]/\\&/g')
         done
+
+        # Load JS scripts inside the js folder
+        ESCAPED_JS=""
+        for JS_FILE in "${SRC}"js/*.js; do
+            [ -e "$JS_FILE" ] || continue
+            ESCAPED_JS=$(printf '%s\n' "${ESCAPED_JS}<script defer src=\"${FILE_DEPTH_PARENTS}js/${JS_FILE##*/}\"></script>  " | sed -e 's/[\/&]/\\&/g')
+        done
         
         # Convert markdown to HTML
         markdown_py -x tables -x toc -x plantuml_markdown -c /pymd_config.yml "${TMP_DIR}${TMP_FILE}" >> "${DEST}${RESULTNAME}"
@@ -53,6 +60,7 @@ if [ -f "${SRC}${FILE}" ]; then
 
         # Substitute strings
         sed -i "s/___CSS___/${ESCAPED_CSS}/g" "${DEST}${RESULTNAME}"
+        sed -i "s/___JS___/${ESCAPED_JS}/g" "${DEST}${RESULTNAME}"
         sed -i "s/___TITLE___/${ESCAPED_TITLE}/g" "${DEST}${RESULTNAME}"
         sed -i -e "/___BODY___/r ${TMP_DIR}${TMP_FILE}" "${DEST}${RESULTNAME}"
         sed -i '1,/___BODY___/s///' "${DEST}${RESULTNAME}"
