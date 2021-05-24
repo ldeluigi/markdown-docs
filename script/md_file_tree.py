@@ -99,7 +99,7 @@ def create_index(cwd, headings=False, wikilinks=False):
     base_level = cwd.count(os.sep)
     md_lines = []
     md_exts = ['.markdown', '.mdown', '.mkdn', '.mkd', '.md']
-    md_lines.append('<!-- filetree -->\n\n')
+    md_lines.append('\n<!--__TOC_START__-->\n')
     for root, dirs, files in os.walk(cwd):
         files = sorted([f for f in files if not f[0] == '.' and os.path.splitext(f)[-1] in md_exts])
         dirs[:] = sorted([d for d in dirs if not d[0] == '.'])
@@ -133,7 +133,7 @@ def create_index(cwd, headings=False, wikilinks=False):
                             indent = '  ' * header_level
                             md_lines.append("{}{} {}\n".format(indent, TOC_LIST_PREFIX, header[1]))
 
-    md_lines.append('\n<!-- filetreestop -->\n')
+    md_lines.append('\n<!--__TOC_END__-->\n')
     return md_lines
 
 
