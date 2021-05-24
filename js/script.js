@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(Array.from(li.childNodes.values()))
 
         if (li.hasChildNodes() && Array.from(li.childNodes.values()).some(e => e.nodeType === 1 && e.nodeName == "UL")) {
-            li.classList.add("toggle");
+            li.classList.add("collapsible");
         } else {
-            li.classList.add("non-toggle");
+            li.classList.add("uncollapsible");
         };
     });
 
