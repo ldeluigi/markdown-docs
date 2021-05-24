@@ -20,11 +20,18 @@
 <li><a href="#as-docker-builder">As Docker builder</a></li>
 </ul>
 </li>
-<li><a href="#documentation">Documentation</a><ul>
+<li><a href="#documenting">Documenting</a><ul>
 <li><a href="#markdown">Markdown</a></li>
 <li><a href="#entrypoint-indexmd">Entrypoint: index.md</a></li>
 <li><a href="#contents-contentsmd">Contents: contents.md</a></li>
-<li><a href="#custom-css-cssstylecss">Custom CSS: css/style.css</a></li>
+<li><a href="#custom-css">Custom CSS</a><ul>
+<li><a href="#cssstylecss">css/style.css</a></li>
+</ul>
+</li>
+<li><a href="#custom-js">Custom JS</a><ul>
+<li><a href="#jsscriptjs">js/script.js</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -33,14 +40,55 @@
 </div>
 <h1 id="markdown-docs">Markdown Docs</h1>
 <p>This repository contains the definition of a Docker image that can be used both as a <strong><a href="#as-docker-builder">builder</a></strong> stage and as an <strong><a href="#as-github-action">action</a></strong>.</p>
-<p>Markdown docs is implemented as a jam of shell scripts, python scripts and python utilities like <a href="https://github.com/Python-Markdown/markdown">Python Markdown</a>, with some additional plugins like <a href="https://python-markdown.github.io/extensions/toc/">Table of Contents</a>, <a href="https://python-markdown.github.io/extensions/tables/">Tables</a> and, on top of all, <a href="https://github.com/mikitex70/plantuml-markdown">PlantUML Markdown</a>. This extension enables the inclusion of PlantUML diagrams (UML, JSON...) rendered <em>inline</em> inside your website. It also supports the <code>!include</code> directive for PlantUML reuse of code.</p>
+<p><strong>markdown-docs</strong> is implemented as a jam of shell scripts, python scripts and python utilities like <a href="https://github.com/Python-Markdown/markdown">Python Markdown</a>, with some additional plugins like <a href="https://python-markdown.github.io/extensions/toc/">Table of Contents</a>, <a href="https://python-markdown.github.io/extensions/tables/">Tables</a> and, on top of all, <a href="https://github.com/mikitex70/plantuml-markdown">PlantUML Markdown</a>. This extension enables the inclusion of PlantUML diagrams (UML, JSON...) rendered <em>inline</em> inside your website. It also supports the <code>!include</code> directive for PlantUML reuse of code.</p>
 <h2 id="usage">Usage</h2>
+<p>You can use <strong>markdown-docs</strong> both as a <a href="#as-github-action">GitHub Acton</a> or a <a href="#as-docker-builder">Docker builder stage</a> inside your dockerfile.</p>
 <h3 id="as-github-action">As GitHub Action</h3>
+<p>To use <strong>markdown-docs</strong> as a GitHub Action, use the following syntax in your workflow:
+<code>yaml
+      - name: Generate HTML from Markdown
+        uses: ldeluigi/markdown-docs@master
+        with:
+          mode: HTML
+          src: doc
+          dst: generated</code>
+This means that every markdown file inside the <code>doc</code> folder in the current workspace will be converted and mapped to a corresponding HTML file inside the <code>generated</code> directory.<br />
+Some non-markdown files are considered as resources and will be copied to the output folder in order to preserve resource links. This works for CSS, JS, images, audio, videos, pdf...<br />
+In addition to that, JS files put inside a <code>js/</code> folder and CSS files inside <code>css/</code> folder are automatically linked to every html generated with <strong>markdown-docs</strong>. See the <a href="#custom-css">custom css</a> and <a href="#custom-js">custom js</a> sections.</p>
 <h3 id="as-docker-builder">As Docker builder</h3>
-<h2 id="documentation">Documentation</h2>
+<p>To use <strong>markdown-docs</strong> as a Docker builder stage use the following syntax in your Dockerfile:<br />
+```dockerfile
+FROM deloo/markdown-docs AS builder</p>
+<p>COPY doc/ /home/src
+ENV WORKSPACE=/home
+RUN /start.sh "HTML" "src" "dst"</p>
+<p>FROM ...</p>
+<p>COPY --from=builder /home/dst /var/www/static/
+<code>``
+This means that first docker creates a builder container where it runs the /start.sh script, then will copy the resulting, generated HTML files in the production image, specifically in</code>/var/www/static`.</p>
+<h2 id="documenting">Documenting</h2>
+<p>The idea behind <strong>markdown-docs</strong> is that all the documentation that can be written in separate files from the code should be mantained like the code documentation, that is thinking about the content and not the appearence. In addition, some of the most important tools for documentation are UML diagrams. In particular, one of the most maintainable way to draw UMLs is <a href="https://plantuml.com/">PlantUML</a>, which can generate UML diagrams for a text specification.<br />
+One of the most important features of <strong>markdown-docs</strong> is the support of PlantUML syntax embedded inside documentation sources, in Markdown.</p>
 <h3 id="markdown">Markdown</h3>
+<p><strong>markdown-docs</strong> makes use of Python Markdown generator, with the following plugins:
+- <strong>TOC</strong><br />
+<em>You can use [TOC] to spawn a table of content inside your markdown file</em>
+- <strong>Tables</strong><br />
+<em>You can write Markdown tables to be rendered appropriately</em>
+- <strong>PlantUML</strong><br />
+<em>You can put PlantUML syntax as speficied in this <a href="https://github.com/mikitex70/plantuml-markdown/blob/master/README.md">readme</a></em></p>
 <h3 id="entrypoint-indexmd">Entrypoint: <code>index.md</code></h3>
+<p>The <code>index.md</code> file is considered as the entrypoint of the documentation. if it isn't provided the script will generate a very basic one, to be served as a land page when converted to <code>index.html</code>.</p>
 <h3 id="contents-contentsmd">Contents: <code>contents.md</code></h3>
-<h3 id="custom-css-cssstylecss">Custom CSS: <code>css/style.css</code></h3>
+<p>The <code>contents.md</code> file is considered as the place to put the global table of contents, a TOC that displays which files are available in the documentation folder and works as a navigation menu for them. If not provided the script will generate one with every file encountered during conversion.</p>
+<h3 id="custom-css">Custom CSS</h3>
+<p>You can provide any number of custom CSS files to be included inside every HTML page. The only requirement is that you put CSS files inside a <code>css</code> folder at the root level.</p>
+<h4 id="cssstylecss"><code>css/style.css</code></h4>
+<p><code>style.css</code> file overrides the default CSS. Provide it only if you know what you are doing. If not provided, the script will generate one based on a template. Currently, the CSS supports both light and dark mode based on the system preferences.</p>
+<h3 id="custom-js">Custom JS</h3>
+<p>You can provide any number of custom JS files to be included inside every HTML page. The only requirement is that you put JS files inside a <code>js</code> folder at the root level.</p>
+<h4 id="jsscriptjs"><code>js/script.js</code></h4>
+<p><code>script.js</code> file overrides the fefault JS.
+Provide it only when you know what you are doing. If not provided, the script will generate one based on a template. Currently, the JS supports collapsible table of contents.</p>
 </body>
 </html>
