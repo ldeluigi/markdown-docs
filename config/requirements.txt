@@ -1,0 +1,2 @@
+#mkdocs~=1.2 # TODO use this when it's out
+git+git://github.com/mkdocs/mkdocs@d9b957e771bd6380ba5c865b5991b402ac3e1382#egg=mkdocs
