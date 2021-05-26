@@ -33,15 +33,17 @@ if [ -f "${SRC}${FILE}" ]; then
         ESCAPED_CSS=""
         for CSS_FILE in "${SRC}"css/*.css; do
             [ -e "$CSS_FILE" ] || continue
-            ESCAPED_CSS=$(printf '%s\n' "${ESCAPED_CSS}<link rel=\"stylesheet\" href=\"${FILE_DEPTH_PARENTS}css/${CSS_FILE##*/}\">  " | sed -e 's/[\/&]/\\&/g')
+            ESCAPED_CSS="${ESCAPED_CSS}<link rel=\"stylesheet\" href=\"${FILE_DEPTH_PARENTS}css/${CSS_FILE##*/}\">  "
         done
+        ESCAPED_CSS=$(printf '%s\n' "${ESCAPED_CSS}" | sed -e 's/[\/&]/\\&/g')
 
         # Load JS scripts inside the js folder
         ESCAPED_JS=""
         for JS_FILE in "${SRC}"js/*.js; do
             [ -e "$JS_FILE" ] || continue
-            ESCAPED_JS=$(printf '%s\n' "${ESCAPED_JS}<script defer src=\"${FILE_DEPTH_PARENTS}js/${JS_FILE##*/}\"></script>  " | sed -e 's/[\/&]/\\&/g')
+            ESCAPED_JS="${ESCAPED_JS}<script defer src=\"${FILE_DEPTH_PARENTS}js/${JS_FILE##*/}\"></script>  "
         done
+        ESCAPED_JS=$(printf '%s\n' "${ESCAPED_JS}" | sed -e 's/[\/&]/\\&/g')
         
         # Convert markdown to HTML
         markdown_py -x tables -x toc -x plantuml_markdown -c /pymd_config.yml "${TMP_DIR}${TMP_FILE}" >> "${DEST}${RESULTNAME}"
