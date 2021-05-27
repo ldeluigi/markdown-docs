@@ -9,17 +9,15 @@ if [ -z "${GITHUB_SERVER_URL}" -a -z "${GITHUB_REPOSITORY}" ] ; then
 fi
 SRC=${2#.}
 export SRC=${WORKSPACE%/}/${SRC#/}
+export PLANTUML_JAVAOPTS="-Dplantuml.include.path=${SRC}"
 RELATIVE_DST=${3#.}
 RELATIVE_DST=${RELATIVE_DST#/}
 RELATIVE_DST=${RELATIVE_DST%/}
 DST=${WORKSPACE%/}/${RELATIVE_DST}
+TMP_DST=/tmp/makedocs
 echo "Source: ${SRC}; Destination: ${DST}"
 
-TEMP_DIR="/tmp/makedocs"
-DOCS_DIR="${TEMP_DIR}/docs"
-mkdir -p "${DOCS_DIR}"
-cp -a "${SRC}/." "${DOCS_DIR}"
-cp /usr/local/src/mkdocs.yml "${TEMP_DIR}"
-
 #xvfb-run -a mkdocs build -c -f /usr/local/src/mkdocs.yml -d "${DST}"
-( cd "${TEMP_DIR}" ; mkdocs build -c -f mkdocs.yml -d "${DST}" )
+rm -r "${DST}"
+mkdocs build -c -f /usr/local/src/mkdocs.yml -d "${TMP_DST}"
+cp -r "${TMP_DST}" "${DST}"
