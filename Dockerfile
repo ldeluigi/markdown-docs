@@ -1,10 +1,10 @@
 FROM python:3.8-alpine
 
 # Download utilities
-RUN apk add --update tree gcc git 
+RUN apk add --update tree gcc git musl-dev
 
 # Downlad draw.io + dependencies
-#RUN apk add --update musl-dev alsa-lib-dev xvfb-run
+#RUN apk add --update alsa-lib-dev xvfb-run
 #ADD https://github.com/jgraph/drawio-desktop/releases/download/v14.6.13/draw.io-14.6.13.zip /drawio.zip
 #RUN tar -xf /drawio.zip -C /drawio
 

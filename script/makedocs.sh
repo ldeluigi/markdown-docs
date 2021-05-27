@@ -15,7 +15,11 @@ RELATIVE_DST=${RELATIVE_DST%/}
 DST=${WORKSPACE%/}/${RELATIVE_DST}
 echo "Source: ${SRC}; Destination: ${DST}"
 
-
+TEMP_DIR="/tmp/makedocs"
+DOCS_DIR="${TEMP_DIR}/docs"
+mkdir -p "${DOCS_DIR}"
+cp -a "${SRC}/." "${DOCS_DIR}"
+cp /usr/local/src/mkdocs.yml "${TEMP_DIR}"
 
 #xvfb-run -a mkdocs build -c -f /usr/local/src/mkdocs.yml -d "${DST}"
-mkdocs build -c -f /usr/local/src/mkdocs.yml -d "${DST}"
+( cd "${TEMP_DIR}" ; mkdocs build -c -f mkdocs.yml -d "${DST}" )
