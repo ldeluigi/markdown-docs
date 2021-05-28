@@ -1,9 +1,10 @@
-[TOC]
-
 # Markdown Docs
 This repository contains the definition of a Docker image that can be used both as a **[builder](#as-docker-builder)** stage and as an **[action](#as-github-action)**.
 
-**markdown-docs** is implemented as a jam of shell scripts, python scripts and python utilities like [Python Markdown](https://github.com/Python-Markdown/markdown), with some additional plugins like [Table of Contents](https://python-markdown.github.io/extensions/toc/), [Tables](https://python-markdown.github.io/extensions/tables/) and, on top of all, [PlantUML Markdown](https://github.com/mikitex70/plantuml-markdown). This extension enables the inclusion of PlantUML diagrams (UML, JSON...) rendered _inline_ inside your website. It also supports the `!include` directive for PlantUML reuse of code.
+**markdown-docs** is implemented as a jam of stuff you don't even need to know about. Just assume that everything is supported until you find that it's not, then submit an issue to add support for even that thing. Only if you really need it.
+
+## Supported Markdown extensions:
+WIP
 
 ## Usage
 You can use **markdown-docs** both as a [GitHub Acton](#as-github-action) or a [Docker builder stage](#as-docker-builder) inside your dockerfile.
@@ -47,20 +48,3 @@ One of the most important features of **markdown-docs** is the support of PlantU
   _You can write Markdown tables to be rendered appropriately_
 - **PlantUML**  
   _You can put PlantUML syntax as speficied in this [readme](https://github.com/mikitex70/plantuml-markdown/blob/master/README.md)_
-
-### Entrypoint: `index.md`
-The `index.md` file is considered as the entrypoint of the documentation. if it isn't provided the script will generate a very basic one, to be served as a land page when converted to `index.html`.
-
-### Contents: `contents.md`
-The `contents.md` file is considered as the place to put the global table of contents, a TOC that displays which files are available in the documentation folder and works as a navigation menu for them. If not provided the script will generate one with every file encountered during conversion.
-
-### Custom CSS
-You can provide any number of custom CSS files to be included inside every HTML page. The only requirement is that you put CSS files inside a `css` folder at the root level.
-#### `css/style.css`
-`style.css` file overrides the default CSS. Provide it only if you know what you are doing. If not provided, the script will generate one based on a template. Currently, the CSS supports both light and dark mode based on the system preferences.
-
-### Custom JS
-You can provide any number of custom JS files to be included inside every HTML page. The only requirement is that you put JS files inside a `js` folder at the root level.
-#### `js/script.js`
-`script.js` file overrides the fefault JS.
-Provide it only when you know what you are doing. If not provided, the script will generate one based on a template. Currently, the JS supports collapsible table of contents.
