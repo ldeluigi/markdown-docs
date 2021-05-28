@@ -56,6 +56,8 @@ markdown_extensions:
       priority: 100                             # plugin priority; the higher, the sooner will be applied (default 23)
   - pymdownx.arithmatex:
       generic: true
+  # - markdown_qrcode:
+  #     pixelsize: 4
   - admonition
   - pymdownx.details
   - pymdownx.superfences
