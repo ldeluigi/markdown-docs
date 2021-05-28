@@ -30,7 +30,7 @@ FROM deloo/markdown-docs AS builder
 
 COPY doc/ /home/src
 ENV WORKSPACE=/home
-RUN /start.sh "HTML" "src" "dst"
+RUN makedocs "HTML" "src" "dst"
 
 FROM ...
 
