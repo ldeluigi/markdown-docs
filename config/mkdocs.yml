@@ -2,6 +2,8 @@ site_name: !ENV REPOSITORY
 site_url: ""
 use_directory_urls: false
 docs_dir: !ENV SRC
+repo_url: !ENV [REPO_URL, null]
+edit_uri: !ENV [EDIT_URI, null]
 theme:
   name: material
 plugins:

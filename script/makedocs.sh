@@ -4,13 +4,14 @@ set -e
 # Setup
 WORKSPACE="${WORKSPACE:-${GITHUB_WORKSPACE:-/}}"
 export REPOSITORY="${GITHUB_REPOSITORY:-Documentation}"
-# Check if documentation is from GitHub
-if [ -z "${GITHUB_SERVER_URL}" -a -z "${GITHUB_REPOSITORY}" ] ; then
-    export GIT=1
-    export REPO_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}"
-fi
 # Source folder
 SRC=${1#.}
+# Check if documentation is from GitHub
+if [ ! -z "${GITHUB_SERVER_URL}" -a ! -z "${GITHUB_REPOSITORY}" ] ; then
+    export GIT=1
+    export REPO_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}"
+    export EDIT_URI="${SRC#/}"
+fi
 export SRC=${WORKSPACE%/}/${SRC#/}
 # PlantUML !include root folder
 export PLANTUML_JAVAOPTS="-Dplantuml.include.path=${SRC}"
