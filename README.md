@@ -14,7 +14,7 @@ This repository contains the definition of a Docker image that can be used both 
 - **tasklist**: Enables GitHub style tasks list. See the [docs](https://facelessuser.github.io/pymdown-extensions/extensions/tasklist/).
 - **abbreviations**: Enables explanations for abbrevations. See the [docs](https://python-markdown.github.io/extensions/abbreviations/).
 - **footnotes**: Enables footnotes. See the [docs](https://python-markdown.github.io/extensions/footnotes/).
-- **git-revision-date-localized**: `{{ git_revision_date_localized }}`, `{{ git_creation_date_localized }}`.
+- **git-revision-date-localized**: Enables linking last edit date of the page. See the [docs](https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/index.html).
 
 ## Usage
 You can use **markdown-docs** both as a [GitHub Acton](#as-github-action) or a [Docker builder stage](#as-docker-builder) inside your dockerfile.
