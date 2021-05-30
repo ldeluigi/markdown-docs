@@ -29,10 +29,13 @@ if [ ! -f "${SRC}/index.md" ] ; then
     echo "# ${REPOSITORY}" > "${SRC}/index.md"
     CLEAN_INDEX=true
 fi
+# Copy static template files
+export SRC_THEME="${SRC}/theme"
+mkdir -p "${SRC_THEME}" && cp -f /usr/local/src/theme.main.html "${SRC_THEME}/main.html"
 # Convert docs to temp folder
 mkdocs build -c -f /usr/local/src/mkdocs.yml -d "${TMP_DST}"
 # Copy static assets to be added
-cp -f /usr/local/src/arithmatex.config.js "${TMP_DST}/js/arithmatex.config.js"
+mkdir -p "${TMP_DST}/js" && cp -f /usr/local/src/arithmatex.config.js "${TMP_DST}/js/arithmatex.config.js"
 # Prepare destination
 rm -rf "${DST}"
 # Move results to destination
