@@ -1,0 +1,1 @@
+const local_index = {"config":{"indexing":"full","lang":["en"],"min_search_length":3,"prebuild_index":false,"separator":"[\\s\\-]+"},"docs":[{"location":"index.html","text":"ldeluigi/markdown-docs","title":"ldeluigi/markdown-docs"},{"location":"index.html#ldeluigimarkdown-docs","text":"","title":"ldeluigi/markdown-docs"}]}; var __search = { index: Promise.resolve(local_index) }

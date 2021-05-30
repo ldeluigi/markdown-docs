@@ -7,7 +7,7 @@ mkdocs-minify-plugin
 mkdocs-git-revision-date-localized-plugin
 mkdocs-git-authors-plugin
 mkdocs-print-site-plugin
-
+mkdocs-localsearch
 
 plantuml-markdown
 markdown-include

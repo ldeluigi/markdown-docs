@@ -2,13 +2,33 @@ site_name: !ENV REPOSITORY
 site_url: ""
 use_directory_urls: false
 docs_dir: !ENV SRC
+repo_url: !ENV [REPO_URL, null]
+edit_uri: !ENV [EDIT_URI, null]
 theme:
   name: material
+  custom_dir: !ENV SRC_THEME
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
 plugins:
   - exclude:
       glob:
         - .git/*
   - search
+  - localsearch
   # - drawio-exporter: # Allows embeddding .drawio files
   #     drawio_executable: /drawio.AppImage
   #     # Diagrams are cached to speed up site generation. The default path is
