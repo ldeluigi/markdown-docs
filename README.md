@@ -45,6 +45,6 @@ COPY --from=builder /home/dst /var/www/static/
 ```
 This means that first docker stage creates a container where it runs the makedocs script, then will copy the resulting, generated HTML files in the production image, specifically in `/var/www/static`. This can be useful for your static website hosting. See [the Wiki](https://github.com/ldeluigi/markdown-docs/wiki) for more examples.
 
-## Documenting your software
+## Notes about documenting your software
 The idea behind **markdown-docs** is that all the documentation that can be written in separate files from the code should be mantained like the code documentation, that is thinking about the content and not the appearence. In addition, some of the most important tools for documentation are UML diagrams. In particular, one of the most maintainable way to draw UMLs is [PlantUML](https://plantuml.com/), which can generate UML diagrams for a text specification.  
 One of the most important features of **markdown-docs** is the support of PlantUML syntax embedded inside documentation sources, in Markdown.
