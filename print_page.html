@@ -221,7 +221,7 @@
   
     <li class="md-nav__item">
       <a href="index.html" class="md-nav__link">
-        ldeluigi/markdown-docs
+        Markdown Docs
       </a>
     </li>
   
@@ -278,7 +278,50 @@
                 </nav>
             </div>
         </section>
-        <section class="print-page" id="index"><h1 id="index-ldeluigimarkdown-docs">ldeluigi/markdown-docs</h1></section></div>
+        <section class="print-page" id="index"><h1 id="index-markdown-docs">Markdown Docs</h1>
+<p>This repository contains the definition of a Docker image that can be used both as a <strong><a href="#index-as-docker-builder">builder</a></strong> stage and as an <strong><a href="#index-as-github-action">action</a></strong>.</p>
+<p><strong>markdown-docs</strong> is implemented as a jam of stuff you don't even need to know about. Just assume that everything is supported until you find that it's not, then submit an issue to add support for even that thing. Only if you really need it.</p>
+<h2 id="index-supported-markdown-extensions">Supported Markdown extensions:</h2>
+<ul>
+<li>The default, standard, Markdown syntax, described at <a href="https://daringfireball.net/projects/markdown/syntax">this website</a>, with <a href="https://python-markdown.github.io/#differences">these differences</a>.</li>
+<li><strong>markdown_include</strong>: <code>` where</code><filename>` is the name of the Markdown file to include. Headers will be shifted to subheaders relative to enclosing header.</li>
+<li><strong>plantuml_markdown</strong>: See the official <a href="https://github.com/mikitex70/plantuml-markdown#readme">readme</a>. Supports non-UML tags like <code>@startjson</code> or math equations too.</li>
+<li><strong>arithmatex</strong>: See the <a href="https://facelessuser.github.io/pymdown-extensions/extensions/arithmatex/">docs</a>. Provides mathematical style and fonts for expressions.</li>
+<li><strong>admonition</strong> and <strong>details</strong>: See the <a href="https://facelessuser.github.io/pymdown-extensions/extensions/details/">details docs</a> and <a href="https://squidfunk.github.io/mkdocs-material/reference/admonitions/">admonitions docs</a>. Provides highlighted text cells for many purposes.</li>
+<li><strong>keys</strong>: You can embed keyboard symbols in text. See the <a href="https://facelessuser.github.io/pymdown-extensions/extensions/keys/">docs</a>.</li>
+<li><strong>tabs</strong>: Enables content tabs. See the <a href="https://squidfunk.github.io/mkdocs-material/reference/content-tabs/">docs</a>.</li>
+<li><strong>tasklist</strong>: Enables GitHub style tasks list. See the <a href="https://facelessuser.github.io/pymdown-extensions/extensions/tasklist/">docs</a>.</li>
+<li><strong>abbreviations</strong>: Enables explanations for abbrevations. See the <a href="https://python-markdown.github.io/extensions/abbreviations/">docs</a>.</li>
+<li><strong>footnotes</strong>: Enables footnotes. See the <a href="https://python-markdown.github.io/extensions/footnotes/">docs</a>.</li>
+<li><strong>git-revision-date-localized</strong>: <code>&lt;span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime"&gt;May 30, 2021 15:43:36&lt;/span&gt;</code>, <code>&lt;span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime"&gt;May 17, 2021 15:11:42&lt;/span&gt;</code>.</li>
+</ul>
+<h2 id="index-usage">Usage</h2>
+<p>You can use <strong>markdown-docs</strong> both as a <a href="#index-as-github-action">GitHub Acton</a> or a <a href="#index-as-docker-builder">Docker builder stage</a> inside your dockerfile.</p>
+<h3 id="index-as-github-action">As GitHub Action</h3>
+<p>To use <strong>markdown-docs</strong> as a GitHub Action, use the following syntax in your workflow:
+<div class="highlight"><pre><span></span><code>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Generate HTML from Markdown</span>
+        <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ldeluigi/markdown-docs@master</span>
+        <span class="nt">with</span><span class="p">:</span>
+          <span class="nt">src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">doc</span>
+          <span class="nt">dst</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">generated</span>
+</code></pre></div>
+This means that every markdown file inside the <code>doc</code> folder in the current workspace will be converted and mapped to a corresponding HTML file inside the <code>generated</code> directory. You can pass <code>.</code> as src to search the entire repo for markdown files. <code>dst</code> folder will be emptied before generation.</p>
+<h3 id="index-as-docker-builder">As Docker builder</h3>
+<p>To use <strong>markdown-docs</strong> as a Docker builder stage use the following syntax in your Dockerfile:<br />
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">deloo/markdown-docs</span> <span class="k">AS</span> <span class="s">builder</span>
+
+<span class="k">COPY</span> docs/ /home/src
+<span class="k">ENV</span> <span class="nv">WORKSPACE</span><span class="o">=</span>/home
+<span class="k">RUN</span> makedocs <span class="s2">&quot;src&quot;</span> <span class="s2">&quot;dst&quot;</span>
+
+<span class="k">FROM</span> <span class="s">...</span>
+
+<span class="k">COPY</span> --from<span class="o">=</span>builder /home/dst /var/www/static/
+</code></pre></div>
+This means that first docker stage creates a container where it runs the makedocs script, then will copy the resulting, generated HTML files in the production image, specifically in <code>/var/www/static</code>. This can be useful for your static website hosting. See <a href="https://github.com/ldeluigi/markdown-docs/wiki">the Wiki</a> for more examples.</p>
+<h2 id="index-documenting-your-software">Documenting your software</h2>
+<p>The idea behind <strong>markdown-docs</strong> is that all the documentation that can be written in separate files from the code should be mantained like the code documentation, that is thinking about the content and not the appearence. In addition, some of the most important tools for documentation are UML diagrams. In particular, one of the most maintainable way to draw UMLs is <a href="https://plantuml.com/">PlantUML</a>, which can generate UML diagrams for a text specification.<br />
+One of the most important features of <strong>markdown-docs</strong> is the support of PlantUML syntax embedded inside documentation sources, in Markdown.</p></section></div>
                 
               
               
