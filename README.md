@@ -1,5 +1,5 @@
 # Markdown Docs
-_The same readme, built with this: [here](ldeluigi.github.io/markdown-docs)!_  
+_The same readme, built with this: [here](https://ldeluigi.github.io/markdown-docs/)!_  
 
 This repository contains the definition of a Docker image that can be used both as a **[builder](#as-docker-builder)** stage and as an **[action](#as-github-action)**.
 
