@@ -1,4 +1,6 @@
 # Markdown Docs
+_The same readme, built with this: [here](ldeluigi.github.io/markdown-docs)!_  
+
 This repository contains the definition of a Docker image that can be used both as a **[builder](#as-docker-builder)** stage and as an **[action](#as-github-action)**.
 
 **markdown-docs** is implemented as a jam of stuff you don't even need to know about. Just assume that everything is supported until you find that it's not, then submit an issue to add support for even that thing. Only if you really need it.
