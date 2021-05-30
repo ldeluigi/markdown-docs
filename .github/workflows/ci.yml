@@ -3,8 +3,6 @@ on:
   push:
     tags:
       - "v*"
-    branches:
-      - "master"
   schedule:
     - cron: "0 8 1 * *"
 jobs:
@@ -43,7 +41,6 @@ jobs:
             ghcr.io/ldeluigi/markdown-docs
           # generate Docker tags based on the following events/attributes
           tags: |
-            type=sha
             type=schedule,pattern=nightly
             type=schedule,pattern={{date 'YYYYMMDDHHmm'}}
             type=semver,pattern={{version}}
