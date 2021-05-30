@@ -5,28 +5,29 @@ docs_dir: !ENV SRC
 theme:
   name: material
 plugins:
-  - search
-  - minify: # Minifies HTML
-      minify_html: true
-      minify_js: true
-      htmlmin_opts:
-          remove_comments: true
   - exclude:
       glob:
         - .git/*
+  - search
   # - drawio-exporter: # Allows embeddding .drawio files
-  #       # Diagrams are cached to speed up site generation. The default path is
-  #       # drawio-exporter, relative to the documentation directory.
-  #       cache_dir: 'drawio-exporter'
-  #       format: svg
-  #       embed_format: '{img_open}{img_src}{img_close}'
-  #       sources: '*.drawio'
+  #     drawio_executable: /drawio.AppImage
+  #     # Diagrams are cached to speed up site generation. The default path is
+  #     # drawio-exporter, relative to the documentation directory.
+  #     cache_dir: /tmp/drawio-exporter
+  #     format: svg
+  #     embed_format: '{img_open}{img_src}{img_close}'
+  #     sources: '*.drawio'
   - git-revision-date-localized:
       type: datetime
       timezone: UTC
       locale: en
       fallback_to_build_date: true
       enable_creation_date: true
+  - minify: # Minifies HTML
+      minify_html: true
+      minify_js: true
+      htmlmin_opts:
+          remove_comments: true
   # - git-authors: # You can use {{ git_page_authors }} {{ git_site_authors }} inside markdown files
   #     show_contribution: true
   #     show_line_count: true
@@ -47,6 +48,10 @@ plugins:
       path_to_pdf: ""
 
 markdown_extensions:
+  - markdown_include.include:
+      base_path: !ENV SRC
+      inheritHeadingDepth: true
+      throwException: false
   - plantuml_markdown:
       cachedir: /tmp                            # set a non-empty value to enable caching
       format: svg                               # default diagram image format
@@ -56,8 +61,9 @@ markdown_extensions:
       priority: 100                             # plugin priority; the higher, the sooner will be applied (default 23)
   - pymdownx.arithmatex:
       generic: true
-  # - markdown_qrcode:
-  #     pixelsize: 4
+  - mdqrcode:
+      pixelsize: 4
+      priority: 99
   - admonition
   - pymdownx.details
   - pymdownx.superfences
@@ -75,6 +81,6 @@ markdown_extensions:
 
 
 extra_javascript:
-  - /usr/local/src/arithmatex.config.js
+  - js/arithmatex.config.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
