@@ -24,7 +24,7 @@ DST=${WORKSPACE%/}/${RELATIVE_DST}
 TMP_DST=/tmp/makedocs
 echo "Source: ${SRC}; Destination: ${DST}"
 # Generate index if absent
-if [ ! -f "${SRC}/index.md" ] ; then
+if [ ! -f "${SRC}/index.md" -a ! -f "${SRC}/README.md" ] ; then
     echo "Index file (index.md) not found. It will be created using a script..."
     echo "# ${REPOSITORY}" > "${SRC}/index.md"
     CLEAN_INDEX=true
@@ -32,6 +32,7 @@ fi
 # Copy static template files
 export SRC_THEME="${SRC}/theme"
 mkdir -p "${SRC_THEME}" && cp -f /usr/local/src/theme.main.html "${SRC_THEME}/main.html"
+CLEAN_THEME=true
 # Convert docs to temp folder
 mkdocs build -c -f /usr/local/src/mkdocs.yml -d "${TMP_DST}"
 # Copy static assets to be added
@@ -43,4 +44,7 @@ mv -f "${TMP_DST}" "${DST}"
 # Cleanup
 if [ "${CLEAN_INDEX}" = true ] ; then
     rm "${SRC}/index.md"
+fi
+if [ "${CLEAN_THEME}" = true ] ; then
+    rm -rf "${SRC_THEME}"
 fi
