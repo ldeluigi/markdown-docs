@@ -16,7 +16,7 @@ DST=${WORKSPACE%/}/${RELATIVE_DST}
 TMP_DST=/tmp/makedocs
 echo "Source: ${SRC}; Destination: ${DST}"
 
-#xvfb-run -a mkdocs build -c -f /usr/local/src/mkdocs.yml -d "${DST}"
 mkdocs build -c -f /usr/local/src/mkdocs.yml -d "${TMP_DST}"
-cp /usr/local/src/arithmatex.config.js "${TMP_DST}/js/arithmatex.config.js"
-cp -r "${TMP_DST}" "${DST}"
+cp -f /usr/local/src/arithmatex.config.js "${TMP_DST}/js/arithmatex.config.js"
+rm -rf "${DST}"
+mv -f "${TMP_DST}" "${DST}"
