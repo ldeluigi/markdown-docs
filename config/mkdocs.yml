@@ -1,0 +1,81 @@
+site_name: !ENV REPOSITORY
+site_url: ""
+use_directory_urls: false
+docs_dir: !ENV SRC
+theme:
+  name: material
+plugins:
+  - exclude:
+      glob:
+        - .git/*
+  - search
+  # - drawio-exporter: # Allows embeddding .drawio files
+  #     drawio_executable: /drawio.AppImage
+  #     # Diagrams are cached to speed up site generation. The default path is
+  #     # drawio-exporter, relative to the documentation directory.
+  #     cache_dir: /tmp/drawio-exporter
+  #     format: svg
+  #     embed_format: '{img_open}{img_src}{img_close}'
+  #     sources: '*.drawio'
+  - git-revision-date-localized:
+      type: datetime
+      timezone: UTC
+      locale: en
+      fallback_to_build_date: true
+      enable_creation_date: true
+  - minify: # Minifies HTML
+      minify_html: true
+      minify_js: true
+      htmlmin_opts:
+          remove_comments: true
+  # - git-authors: # You can use {{ git_page_authors }} {{ git_site_authors }} inside markdown files
+  #     show_contribution: true
+  #     show_line_count: true
+  #     count_empty_lines: false
+  - print-site: # Must be the last one
+      add_to_navigation: true
+      print_page_title: 'Print as PDF'
+      # Table of contents
+      add_table_of_contents: true
+      toc_title: 'Index'
+      toc_depth: 6
+      # Content-related
+      add_full_urls: false
+      enumerate_headings: true
+      enumerate_figures: true
+      path_to_pdf: ""
+
+markdown_extensions:
+  - markdown_include.include:
+      base_path: !ENV SRC
+      inheritHeadingDepth: true
+      throwException: false
+  - plantuml_markdown:
+      cachedir: /tmp                            # set a non-empty value to enable caching
+      format: svg                               # default diagram image format
+      classes: UML                              # default diagram classes
+      title: UML diagram                        # default title (tooltip) for diagram images
+      alt: UML diagram image                    # default `alt` attribute for diagram images
+      priority: 100                             # plugin priority; the higher, the sooner will be applied (default 23)
+  - pymdownx.arithmatex:
+      generic: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: false
+  - abbr
+  - footnotes
+
+
+extra_javascript:
+  - js/arithmatex.config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
