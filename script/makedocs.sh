@@ -11,7 +11,13 @@ if [ ! -z "${GITHUB_SERVER_URL}" -a ! -z "${GITHUB_REPOSITORY}" ] ; then
     export GIT=1
     export REPO_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}"
     EDIT_URI="${SRC#/}"
-    export EDIT_URI="${EDIT_URI:-/}"
+    case "${GITHUB_REF}" in
+        refs/heads/* )
+            BRANCH_NAME=${GITHUB_REF#refs/heads/}
+    esac
+    if [ ! -z "${BRANCH_NAME}" ] ; then
+        export EDIT_URI="edit/${BRANCH_NAME}/${EDIT_URI}"
+    fi
 fi
 export SRC=${WORKSPACE%/}/${SRC#/}
 # PlantUML !include root folder
