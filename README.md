@@ -4,7 +4,17 @@ This repository contains the definition of a Docker image that can be used both 
 **markdown-docs** is implemented as a jam of stuff you don't even need to know about. Just assume that everything is supported until you find that it's not, then submit an issue to add support for even that thing. Only if you really need it.
 
 ## Supported Markdown extensions:
-WIP
+- The default, standard, Markdown syntax, described at [this website](https://daringfireball.net/projects/markdown/syntax), with [these differences](https://python-markdown.github.io/#differences).
+- **markdown_include**: `{!<filename>!}` where `<filename>` is the name of the Markdown file to include. Headers will be shifted to subheaders relative to enclosing header.
+- **plantuml_markdown**: See the official [readme](https://github.com/mikitex70/plantuml-markdown#readme). Supports non-UML tags like `@startjson` or math equations too.
+- **arithmatex**: See the [docs](https://facelessuser.github.io/pymdown-extensions/extensions/arithmatex/). Provides mathematical style and fonts for expressions.
+- **admonition** and **details**: See the [details docs](https://facelessuser.github.io/pymdown-extensions/extensions/details/) and [admonitions docs](https://squidfunk.github.io/mkdocs-material/reference/admonitions/). Provides highlighted text cells for many purposes.
+- **keys**: You can embed keyboard symbols in text. See the [docs](https://facelessuser.github.io/pymdown-extensions/extensions/keys/).
+- **tabs**: Enables content tabs. See the [docs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs/).
+- **tasklist**: Enables GitHub style tasks list. See the [docs](https://facelessuser.github.io/pymdown-extensions/extensions/tasklist/).
+- **abbreviations**: Enables explanations for abbrevations. See the [docs](https://python-markdown.github.io/extensions/abbreviations/).
+- **footnotes**: Enables footnotes. See the [docs](https://python-markdown.github.io/extensions/footnotes/).
+- **git-revision-date-localized**: `{{ git_revision_date_localized }}`, `{{ git_creation_date_localized }}`.
 
 ## Usage
 You can use **markdown-docs** both as a [GitHub Acton](#as-github-action) or a [Docker builder stage](#as-docker-builder) inside your dockerfile.
@@ -18,14 +28,14 @@ To use **markdown-docs** as a GitHub Action, use the following syntax in your wo
           src: doc
           dst: generated
 ```
-This means that every markdown file inside the `doc` folder in the current workspace will be converted and mapped to a corresponding HTML file inside the `generated` directory. 
+This means that every markdown file inside the `doc` folder in the current workspace will be converted and mapped to a corresponding HTML file inside the `generated` directory. You can pass `.` as src to search the entire repo for markdown files. `dst` folder will be emptied before generation.
 
 ### As Docker builder
 To use **markdown-docs** as a Docker builder stage use the following syntax in your Dockerfile:  
 ```dockerfile
 FROM deloo/markdown-docs AS builder
 
-COPY doc/ /home/src
+COPY docs/ /home/src
 ENV WORKSPACE=/home
 RUN makedocs "src" "dst"
 
@@ -33,7 +43,7 @@ FROM ...
 
 COPY --from=builder /home/dst /var/www/static/
 ```
-This means that first docker creates a builder container where it runs the /start.sh script, then will copy the resulting, generated HTML files in the production image, specifically in `/var/www/static`.
+This means that first docker stage creates a container where it runs the makedocs script, then will copy the resulting, generated HTML files in the production image, specifically in `/var/www/static`. This can be useful for your static website hosting. See [the Wiki](https://github.com/ldeluigi/markdown-docs/wiki) for more examples.
 
 ## Documenting your software
 The idea behind **markdown-docs** is that all the documentation that can be written in separate files from the code should be mantained like the code documentation, that is thinking about the content and not the appearence. In addition, some of the most important tools for documentation are UML diagrams. In particular, one of the most maintainable way to draw UMLs is [PlantUML](https://plantuml.com/), which can generate UML diagrams for a text specification.  
