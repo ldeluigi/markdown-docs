@@ -3,6 +3,10 @@ on:
   push:
     tags:
       - "v*"
+    branches:
+      - "master"
+  schedule:
+    - cron: "0 8 1 * *"
 jobs:
   push-to-registries:
     name: Push Docker image to multiple registries
@@ -23,6 +27,9 @@ jobs:
             ghcr.io/ldeluigi/markdown-docs
           # generate Docker tags based on the following events/attributes
           tags: |
+            type=sha
+            type=schedule,pattern=nightly
+            type=schedule,pattern={{date 'YYYYMMDDHHmm'}}
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}},enable=${{ !startsWith(github.ref, 'refs/tags/v0.') }}
