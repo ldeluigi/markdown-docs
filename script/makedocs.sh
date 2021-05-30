@@ -10,7 +10,8 @@ SRC=${1#.}
 if [ ! -z "${GITHUB_SERVER_URL}" -a ! -z "${GITHUB_REPOSITORY}" ] ; then
     export GIT=1
     export REPO_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}"
-    export EDIT_URI="${SRC#/}"
+    EDIT_URI="${SRC#/}"
+    export EDIT_URI="${EDIT_URI:-/}"
 fi
 export SRC=${WORKSPACE%/}/${SRC#/}
 # PlantUML !include root folder
