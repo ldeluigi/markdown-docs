@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run action
-        uses: ./
+        uses: ./test/
         with:
           src: .
           dst: ./result
