@@ -11,4 +11,3 @@ mkdocs-print-site-plugin
 
 plantuml-markdown
 markdown-include
-git+git://github.com/ldeluigi/python-markdown-qrcode#egg=markdown_qrcode

@@ -10,7 +10,7 @@ RUN chmod +x /usr/local/bin/plantuml
 
 # Download Python Markdown + dependencies
 COPY config/requirements.txt /usr/local/src/requirements.txt
-RUN apk add --no-cache gcc git musl-dev jpeg-dev zlib-dev && \
+RUN apk add --no-cache gcc git musl-dev && \
   pip install --no-cache-dir -r /usr/local/src/requirements.txt && \
   apk del gcc musl-dev
 

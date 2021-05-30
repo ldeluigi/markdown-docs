@@ -32,8 +32,6 @@ plugins:
   #     show_contribution: true
   #     show_line_count: true
   #     count_empty_lines: false
-
-
   - print-site: # Must be the last one
       add_to_navigation: true
       print_page_title: 'Print as PDF'
@@ -61,9 +59,6 @@ markdown_extensions:
       priority: 100                             # plugin priority; the higher, the sooner will be applied (default 23)
   - pymdownx.arithmatex:
       generic: true
-  - mdqrcode:
-      pixelsize: 4
-      priority: 99
   - admonition
   - pymdownx.details
   - pymdownx.superfences
