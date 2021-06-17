@@ -5,3 +5,18 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    labels:
+      - "dependency"
+      - "bot"
+    target-branch: "master"
+
+  # Maintain dependencies for Pip
+  - package-ecosystem: "pip"
+    directory: "config/"
+    schedule:
+      interval: "monthly"
+    labels:
+      - "dependency"
+      - "bot"
+    target-branch: "master"
+    
