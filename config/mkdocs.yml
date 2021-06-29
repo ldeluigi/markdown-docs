@@ -80,6 +80,7 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
   - admonition
+  - sane_lists
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.highlight
