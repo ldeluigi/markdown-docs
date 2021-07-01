@@ -18,6 +18,7 @@ RUN apk add --no-cache gcc git musl-dev && \
 COPY config/mkdocs.yml /usr/local/src/mkdocs.yml
 COPY config/arithmatex.config.js /usr/local/src/arithmatex.config.js
 COPY config/theme.main.html /usr/local/src/theme.main.html
+COPY config/theme.404.html /usr/local/src/theme.404.html
 
 # Entrypoint
 COPY script/makedocs.sh /usr/local/bin/makedocs
