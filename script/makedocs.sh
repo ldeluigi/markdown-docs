@@ -38,7 +38,7 @@ if [ ! -f "${SRC}/index.md" -a ! -f "${SRC}/README.md" ] ; then
 fi
 # Copy static template files
 export SRC_THEME="${SRC}/theme"
-mkdir -p "${SRC_THEME}" && cp -f /usr/local/src/theme.main.html "${SRC_THEME}/main.html"
+mkdir -p "${SRC_THEME}" && cp -f /usr/local/src/theme.main.html "${SRC_THEME}/main.html" && cp -f /usr/local/src/theme.404.html "${SRC_THEME}/404.html"
 CLEAN_THEME=true
 # Convert docs to temp folder
 mkdocs build -c -f /usr/local/src/mkdocs.yml -d "${TMP_DST}"
