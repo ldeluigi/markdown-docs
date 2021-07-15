@@ -10,7 +10,7 @@ This repository contains the definition of a Docker image that can be used both 
 - **markdown_include**: Command that embeds a markdown file into another. Headers will be shifted to subheaders relative to enclosing header. See the [readme](https://github.com/cmacmackin/markdown-include/).
 - **plantuml_markdown**: See the official [readme](https://github.com/mikitex70/plantuml-markdown#readme). Supports non-UML tags like `@startjson` or math equations too.
 - **arithmatex**: See the [docs](https://facelessuser.github.io/pymdown-extensions/extensions/arithmatex/). Provides mathematical style and fonts for expressions.
-- **admonition** and **details**: See the [details docs](https://facelessuser.github.io/pymdown-extensions/extensions/details/) and [admonitions docs](https://squidfunk.github.io/mkdocs-material/reference/admonitions/). Provides highlighted text cells for many purposes.
+- **admonition** and **details**: See the [admonitions docs](https://squidfunk.github.io/mkdocs-material/reference/admonitions/) and [details docs](https://facelessuser.github.io/pymdown-extensions/extensions/details/). Provides highlighted text cells for many purposes. Details are also called [collapsible blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks).
 - **keys**: You can embed keyboard symbols in text. See the [docs](https://facelessuser.github.io/pymdown-extensions/extensions/keys/).
 - **tabs**: Enables content tabs. See the [docs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs/).
 - **tasklist**: Enables GitHub style tasks list. See the [docs](https://facelessuser.github.io/pymdown-extensions/extensions/tasklist/).
