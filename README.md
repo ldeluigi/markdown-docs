@@ -7,7 +7,7 @@ This repository contains the definition of a Docker image that can be used both 
 
 ## Supported Markdown extensions:
 - The default, standard, Markdown syntax, described at [this website](https://daringfireball.net/projects/markdown/syntax), with [these differences](https://python-markdown.github.io/#differences).
-- **markdown_include**: `{!<filename>!}` where `<filename>` is the name of the Markdown file to include. Headers will be shifted to subheaders relative to enclosing header.
+- **markdown_include**: Command that embeds a markdown file into another. Headers will be shifted to subheaders relative to enclosing header. See the [readme](https://github.com/cmacmackin/markdown-include/).
 - **plantuml_markdown**: See the official [readme](https://github.com/mikitex70/plantuml-markdown#readme). Supports non-UML tags like `@startjson` or math equations too.
 - **arithmatex**: See the [docs](https://facelessuser.github.io/pymdown-extensions/extensions/arithmatex/). Provides mathematical style and fonts for expressions.
 - **admonition** and **details**: See the [details docs](https://facelessuser.github.io/pymdown-extensions/extensions/details/) and [admonitions docs](https://squidfunk.github.io/mkdocs-material/reference/admonitions/). Provides highlighted text cells for many purposes.
