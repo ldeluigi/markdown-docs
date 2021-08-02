@@ -297,6 +297,7 @@
 <li><strong>abbreviations</strong>: Enables explanations for abbrevations. See the <a href="https://python-markdown.github.io/extensions/abbreviations/">docs</a>.</li>
 <li><strong>footnotes</strong>: Enables footnotes. See the <a href="https://python-markdown.github.io/extensions/footnotes/">docs</a>.</li>
 <li><strong>git-revision-date-localized</strong>: Enables linking last edit date of the page. See the <a href="https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/index.html">docs</a>.</li>
+<li><strong>git-authors-plugin</strong>: Enables linking git authors of the page. See the <a href="https://timvink.github.io/mkdocs-git-authors-plugin/index.html">docs</a>.</li>
 </ul>
 <h2 id="index-usage">Usage</h2>
 <p>You can use <strong>markdown-docs</strong> both as a <a href="#index-as-github-action">GitHub Acton</a> or a <a href="#index-as-docker-builder">Docker builder stage</a> inside your dockerfile.</p>
@@ -325,7 +326,14 @@ This means that every markdown file inside the <code>doc</code> folder in the cu
 This means that first docker stage creates a container where it runs the makedocs script, then will copy the resulting, generated HTML files in the production image, specifically in <code>/var/www/static</code>. This can be useful for your static website hosting. See <a href="https://github.com/ldeluigi/markdown-docs/wiki">the Wiki</a> for more examples.</p>
 <h2 id="index-notes-about-documenting-your-software">Notes about documenting your software</h2>
 <p>The idea behind <strong>markdown-docs</strong> is that all the documentation that can be written in separate files from the code should be mantained like the code documentation, that is thinking about the content and not the appearence. In addition, some of the most important tools for documentation are UML diagrams. In particular, one of the most maintainable way to draw UMLs is <a href="https://plantuml.com/">PlantUML</a>, which can generate UML diagrams for a text specification.<br />
-One of the most important features of <strong>markdown-docs</strong> is the support of PlantUML syntax embedded inside documentation sources, in Markdown.</p></section></div>
+One of the most important features of <strong>markdown-docs</strong> is the support of PlantUML syntax embedded inside documentation sources, in Markdown.</p>
+<h2 id="index-contributing">Contributing</h2>
+<p>Fork this project and make PRs.</p>
+<h3 id="index-local-tests">Local tests</h3>
+<p>With <strong>Docker</strong> <em>(suggested)</em>:
+<div class="highlight"><pre><span></span><code>docker build -t markdown-docs . --no-cache
+docker run -e <span class="nv">WORKSPACE</span><span class="o">=</span>/github/workspace -v &lt;YOUR-CURRENT-WORKING-DIRECTORY&gt;:/github/workspace markdown-docs . result/
+</code></pre></div></p></section></div>
                 
               
               

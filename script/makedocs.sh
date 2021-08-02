@@ -41,7 +41,9 @@ export SRC_THEME="${SRC}/theme"
 mkdir -p "${SRC_THEME}" && cp -f /usr/local/src/theme.main.html "${SRC_THEME}/main.html" && cp -f /usr/local/src/theme.404.html "${SRC_THEME}/404.html"
 CLEAN_THEME=true
 # Convert docs to temp folder
-mkdocs build -c -f /usr/local/src/mkdocs.yml -d "${TMP_DST}"
+( cd "${SRC}" ; mkdocs build -c -f /usr/local/src/mkdocs.yml -d "${TMP_DST}" )
+# Start cleanup phase
+echo "Cleanup..."
 # Copy static assets to be added
 mkdir -p "${TMP_DST}/js" && cp -f /usr/local/src/arithmatex.config.js "${TMP_DST}/js/arithmatex.config.js"
 # Prepare destination
@@ -55,3 +57,5 @@ fi
 if [ "${CLEAN_THEME}" = true ] ; then
     rm -rf "${SRC_THEME}"
 fi
+# End task
+echo "Done"

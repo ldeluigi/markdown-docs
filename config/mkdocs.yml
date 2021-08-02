@@ -43,15 +43,16 @@ plugins:
       locale: en
       fallback_to_build_date: true
       enable_creation_date: true
+  - git-authors:
+      show_contribution: true
+      show_line_count: true
+      count_empty_lines: false
+      fallback_to_empty: true
   - minify: # Minifies HTML
       minify_html: true
       minify_js: true
       htmlmin_opts:
           remove_comments: true
-  # - git-authors: # You can use {{ git_page_authors }} {{ git_site_authors }} inside markdown files
-  #     show_contribution: true
-  #     show_line_count: true
-  #     count_empty_lines: false
   - print-site: # Must be the last one
       add_to_navigation: true
       print_page_title: 'Print as PDF'
