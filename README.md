@@ -17,6 +17,7 @@ This repository contains the definition of a Docker image that can be used both 
 - **abbreviations**: Enables explanations for abbrevations. See the [docs](https://python-markdown.github.io/extensions/abbreviations/).
 - **footnotes**: Enables footnotes. See the [docs](https://python-markdown.github.io/extensions/footnotes/).
 - **git-revision-date-localized**: Enables linking last edit date of the page. See the [docs](https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/index.html).
+- **git-authors-plugin**: Enables linking git authors of the page. See the [docs](https://timvink.github.io/mkdocs-git-authors-plugin/index.html).
 
 ## Usage
 You can use **markdown-docs** both as a [GitHub Acton](#as-github-action) or a [Docker builder stage](#as-docker-builder) inside your dockerfile.
@@ -52,3 +53,12 @@ This means that first docker stage creates a container where it runs the makedoc
 ## Notes about documenting your software
 The idea behind **markdown-docs** is that all the documentation that can be written in separate files from the code should be mantained like the code documentation, that is thinking about the content and not the appearence. In addition, some of the most important tools for documentation are UML diagrams. In particular, one of the most maintainable way to draw UMLs is [PlantUML](https://plantuml.com/), which can generate UML diagrams for a text specification.  
 One of the most important features of **markdown-docs** is the support of PlantUML syntax embedded inside documentation sources, in Markdown.
+
+## Contributing
+Fork this project and make PRs.
+### Local tests
+With **Docker** *(suggested)*:
+```bash
+docker build -t markdown-docs . --no-cache
+docker run -e WORKSPACE=/github/workspace -v <YOUR-CURRENT-WORKING-DIRECTORY>:/github/workspace markdown-docs . result/
+```
