@@ -43,8 +43,10 @@ jobs:
   push-to-registries:
     name: Push Docker image to multiple registries
     runs-on: ubuntu-latest
+    if: ${{ needs.release-checks.outputs.should-release == 'true' || github.event_name == 'schedule' }}
     needs:
-      - release
+      - release-checks
+      - test
     permissions:
       packages: write
       contents: write
