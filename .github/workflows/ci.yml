@@ -16,7 +16,7 @@ jobs:
     steps:
       - id: semver
         name: Semantic Version Checks
-        uses: ldeluigi/action-sem-ver-checks@v0
+        uses: ldeluigi/action-semver-checks@v0.1
   test:
     runs-on: ubuntu-latest
     name: Test on self
@@ -39,7 +39,7 @@ jobs:
       - test
     runs-on: ubuntu-20.04
     steps:
-      - uses: ldeluigi/action-sem-ver-release@v0
+      - uses: ldeluigi/action-semver-release@v0.1
   push-to-registries:
     name: Push Docker image to multiple registries
     runs-on: ubuntu-latest
