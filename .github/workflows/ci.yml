@@ -39,7 +39,7 @@ jobs:
       - test
     runs-on: ubuntu-20.04
     steps:
-      - uses: ldeluigi/action-semver-release@v0.1
+      - uses: ldeluigi/action-semver-release@v0.2.1
   push-to-registries:
     name: Push Docker image to multiple registries
     runs-on: ubuntu-latest
