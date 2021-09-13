@@ -8,21 +8,15 @@ on:
   schedule:
     - cron: "0 8 1 * *"
 jobs:
-  release-checks:
-    name: Release Checks
-    runs-on: ubuntu-20.04
-    outputs:
-      should-release: ${{ steps.semver.outputs.should-release }}
-    steps:
-      - id: semver
-        name: Semantic Version Checks
-        uses: ldeluigi/action-semver-checks@v0.1
   test:
     runs-on: ubuntu-latest
     name: Test on self
+    outputs:
+      should-release: ${{ steps.semver-checkout.outputs.should-release }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - id: semver-checkout
+        name: Checkout
+        uses: EasyDesk/action-semver-checkout@v1
       - name: Run action
         uses: ./test/
         with:
@@ -33,9 +27,8 @@ jobs:
           test ! -z "$(ls -A ./result)"
   release:
     name: GitHub Release Job
-    if: ${{ needs.release-checks.outputs.should-release == 'true' }}
+    if: ${{ needs.test.outputs.should-release == 'true' }}
     needs:
-      - release-checks
       - test
     runs-on: ubuntu-20.04
     steps:
@@ -43,9 +36,8 @@ jobs:
   push-to-registries:
     name: Push Docker image to multiple registries
     runs-on: ubuntu-latest
-    if: ${{ needs.release-checks.outputs.should-release == 'true' || github.event_name == 'schedule' }}
+    if: ${{ needs.test.outputs.should-release == 'true' || github.event_name == 'schedule' }}
     needs:
-      - release-checks
       - test
     permissions:
       packages: write
