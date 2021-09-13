@@ -13,6 +13,8 @@ jobs:
     name: Test on self
     outputs:
       should-release: ${{ steps.semver-checkout.outputs.should-release }}
+      version: ${{ steps.semver-checkout.outputs.version }}
+      is-prerelease: ${{ steps.semver-checkout.outputs.is-github-prerelease }}
     steps:
       - id: semver-checkout
         name: Checkout
@@ -32,7 +34,10 @@ jobs:
       - test
     runs-on: ubuntu-20.04
     steps:
-      - uses: ldeluigi/action-semver-release@v0.1
+      - uses: EasyDesk/action-semver-release@v1
+        with:
+          version: ${{ needs.test.outputs.version }}
+          prerelease: ${{ needs.test.outputs.is-prerelease }}
   push-to-registries:
     name: Push Docker image to multiple registries
     runs-on: ubuntu-latest
