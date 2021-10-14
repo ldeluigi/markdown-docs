@@ -61,7 +61,7 @@ jobs:
           # generate Docker tags based on the following events/attributes
           tags: |
             type=schedule,pattern=nightly
-            type=schedule,pattern={{date 'YYYYMMDDHHmm'}}
+            type=schedule,pattern=auto-{{date 'YYYYMMDDHHmm'}}
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}},enable=${{ !startsWith(github.ref, 'refs/tags/v0.') }}
