@@ -23,4 +23,5 @@ runs:
   args:
     - ${{ inputs.src }}
     - ${{ inputs.dst }}
-    - ${{ inputs.language }}
+  env:
+    LANGUAGE: ${{ inputs.language }}

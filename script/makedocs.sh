@@ -41,7 +41,6 @@ export SRC_THEME="${SRC}/theme"
 mkdir -p "${SRC_THEME}" && cp -f /usr/local/src/theme.main.html "${SRC_THEME}/main.html" && cp -f /usr/local/src/theme.404.html "${SRC_THEME}/404.html"
 CLEAN_THEME=true
 # Convert docs to temp folder
-export LANGUAGE=${3}
 echo "Language: ${LANGUAGE}"
 ( cd "${SRC}" ; mkdocs build -c -f /usr/local/src/mkdocs.yml -d "${TMP_DST}" )
 # Start cleanup phase
