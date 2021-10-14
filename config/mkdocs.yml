@@ -29,7 +29,7 @@ plugins:
       glob:
         - .git/*
   - search:
-      language: !ENV LANGUAGE
+      lang: !ENV LANGUAGE
   - localsearch
   # - drawio-exporter: # Allows embeddding .drawio files
   #     drawio_executable: /drawio.AppImage
