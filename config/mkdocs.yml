@@ -7,6 +7,7 @@ edit_uri: !ENV [EDIT_URI, ""]
 theme:
   name: material
   custom_dir: !ENV SRC_THEME
+  language: !ENV LANGUAGE
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -27,7 +28,8 @@ plugins:
   - exclude:
       glob:
         - .git/*
-  - search
+  - search:
+      language: !ENV LANGUAGE
   - localsearch
   # - drawio-exporter: # Allows embeddding .drawio files
   #     drawio_executable: /drawio.AppImage
