@@ -74,7 +74,6 @@ This means that first docker stage creates a container where it runs the makedoc
 There are some environment variables that control the behaviour of the builder. These are:
 ```dockerfile
 ENV WORKSPACE=/home
-
 # Optionals (with their default values)
 ENV LANGUAGE=en
 ENV ICON=library
