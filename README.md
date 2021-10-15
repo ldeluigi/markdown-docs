@@ -31,13 +31,23 @@ To use **markdown-docs** as a GitHub Action, use the following syntax in your wo
         with:
           src: doc
           dst: generated
-          language: lang
 ```
 This means that every markdown file inside the `doc` folder in the current workspace will be converted and mapped to a corresponding HTML file inside the `generated` directory. You can pass `.` as src to search the entire repo for markdown files. `dst` folder will be emptied before generation.
 
-`lang` is optinal paramater(default en). This allows to change language and search settings in mkdocs.
-
+#### Additional information
 In order to make the "last edit date" plugin work you need to clone the full history of your documentation inside your CI. With GitHub actions this can be done using the option `fetch-depth: 0` with the `actions/checkout@v2` step.
+
+#### Complete usage example with all the parameters
+```yaml
+      - name: Generate HTML from Markdown
+        uses: ldeluigi/markdown-docs@master
+        with:
+          src: doc
+          dst: generated
+          language: en
+```
+
+`language` is an optional paramater (defaults to `en`) that allows to change [language features](https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/#site-language) and [search features](https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#built-in-search).
 
 ### As Docker builder
 To use **markdown-docs** as a Docker builder stage use the following syntax in your Dockerfile:  
@@ -54,9 +64,18 @@ COPY --from=builder /home/dst /var/www/static/
 ```
 This means that first docker stage creates a container where it runs the makedocs script, then will copy the resulting, generated HTML files in the production image, specifically in `/var/www/static`. This can be useful for your static website hosting. See [the Wiki](https://github.com/ldeluigi/markdown-docs/wiki) for more examples.
 
+#### Environment variables
+There are some environment variables that control the behaviour of the builder. These are:
+```dockerfile
+ENV WORKSPACE=/home
+ENV LANGUAGE=en
+```
+`WORKSPACE` selects the path in which the main script is run. This path should be the root of your working directory, inside which there are both the source folder and the destination folder.
+`LANGUAGE` selects the documentation .
+
 ## Notes about documenting your software
 The idea behind **markdown-docs** is that all the documentation that can be written in separate files from the code should be mantained like the code documentation, that is thinking about the content and not the appearence. In addition, some of the most important tools for documentation are UML diagrams. In particular, one of the most maintainable way to draw UMLs is [PlantUML](https://plantuml.com/), which can generate UML diagrams for a text specification.  
-One of the most important features of **markdown-docs** is the support of PlantUML syntax embedded inside documentation sources, in Markdown.
+One of the most important features of **markdown-docs** is the support of PlantUML syntax embedded inside documentation sources, in Markdown.[language features](https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/#site-language) and [search features](https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#built-in-search)
 
 ## Contributing
 Fork this project and make PRs.
