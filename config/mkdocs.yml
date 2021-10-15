@@ -56,7 +56,7 @@ plugins:
       count_empty_lines: false
       fallback_to_empty: true
   - minify: # Minifies HTML
-      minify_html: true
+      minify_html: false
       minify_js: true
       htmlmin_opts:
           remove_comments: true
