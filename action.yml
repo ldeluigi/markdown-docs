@@ -13,9 +13,15 @@ inputs:
     description: 'Output path'
     required: true
     default: 'docs'
+  language:
+    description: 'Language in mkdocs'
+    required: false
+    default: 'en'
 runs:
   using: 'docker'
   image: 'docker://deloo/markdown-docs'
   args:
     - ${{ inputs.src }}
     - ${{ inputs.dst }}
+  env:
+    LANGUAGE: ${{ inputs.language }}
