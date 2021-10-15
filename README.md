@@ -27,7 +27,7 @@ You can use **markdown-docs** both as a [GitHub Acton](#as-github-action) or a [
 To use **markdown-docs** as a GitHub Action, use the following syntax in your workflow:
 ```yaml
       - name: Generate HTML from Markdown
-        uses: ldeluigi/markdown-docs@master
+        uses: ldeluigi/markdown-docs@latest
         with:
           src: doc
           dst: generated
@@ -40,7 +40,7 @@ In order to make the "last edit date" plugin work you need to clone the full his
 #### Complete usage example with all the parameters
 ```yaml
       - name: Generate HTML from Markdown
-        uses: ldeluigi/markdown-docs@master
+        uses: ldeluigi/markdown-docs@latest
         with:
           src: doc
           dst: generated
@@ -70,8 +70,8 @@ There are some environment variables that control the behaviour of the builder. 
 ENV WORKSPACE=/home
 ENV LANGUAGE=en
 ```
-`WORKSPACE` selects the path in which the main script is run. This path should be the root of your working directory, inside which there are both the source folder and the destination folder.
-`LANGUAGE` selects the documentation .
+* `WORKSPACE` selects the path in which the main script is run. This path should be the root of your working directory, inside which there are both the source folder and the destination folder.
+* `LANGUAGE` selects the documentation [language features](https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/#site-language) and [search features](https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#built-in-search).
 
 ## Notes about documenting your software
 The idea behind **markdown-docs** is that all the documentation that can be written in separate files from the code should be mantained like the code documentation, that is thinking about the content and not the appearence. In addition, some of the most important tools for documentation are UML diagrams. In particular, one of the most maintainable way to draw UMLs is [PlantUML](https://plantuml.com/), which can generate UML diagrams for a text specification.  
