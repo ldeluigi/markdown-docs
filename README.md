@@ -45,9 +45,15 @@ In order to make the "last edit date" plugin work you need to clone the full his
           src: doc
           dst: generated
           language: en
+          icon: library
+          primary-color: indigo
+          secondary-color: indigo
 ```
-
-`language` is an optional paramater (defaults to `en`) that allows to change [language features](https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/#site-language) and [search features](https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#built-in-search).
+##### Additional parameters info
+* `language` is an optional paramater (defaults to `en`) that allows to change [language features](https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/#site-language) and [search features](https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#built-in-search).
+* `icon` is an optional parameter (defaults to `library`) that selects the main top-left icon of the documentation website. Can be one of the icons from [Material Design Icons](https://materialdesignicons.com).
+* `primary-color` is an optional parameter (defaults to `indigo`) that selects the main color of the documentation website. For more information, see the [docs](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#primary-color).
+* `secondary-color` is an optional parameter (defaults to `indigo`) that selects the accent color of the documentation website. For more information, see the [docs](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#accent-color).
 
 ### As Docker builder
 To use **markdown-docs** as a Docker builder stage use the following syntax in your Dockerfile:  
@@ -68,10 +74,15 @@ This means that first docker stage creates a container where it runs the makedoc
 There are some environment variables that control the behaviour of the builder. These are:
 ```dockerfile
 ENV WORKSPACE=/home
+
+# Optionals (with their default values)
 ENV LANGUAGE=en
+ENV ICON=library
+ENV PRIMARY_COLOR=indigo
+ENV SECONDARY_COLOR=indigo
 ```
 * `WORKSPACE` selects the path in which the main script is run. This path should be the root of your working directory, inside which there are both the source folder and the destination folder.
-* `LANGUAGE` selects the documentation [language features](https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/#site-language) and [search features](https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#built-in-search).
+* `LANGUAGE`, `ICON`, `PRIMARY_COLOR`, `SECONDARY_COLOR` are all described in [this section](#additional-parameters-info).
 
 ## Notes about documenting your software
 The idea behind **markdown-docs** is that all the documentation that can be written in separate files from the code should be mantained like the code documentation, that is thinking about the content and not the appearence. In addition, some of the most important tools for documentation are UML diagrams. In particular, one of the most maintainable way to draw UMLs is [PlantUML](https://plantuml.com/), which can generate UML diagrams for a text specification.  

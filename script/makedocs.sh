@@ -30,6 +30,10 @@ DST=${WORKSPACE%/}/${RELATIVE_DST}
 # Temp files
 TMP_DST=/tmp/makedocs
 echo "Source: ${SRC}; Destination: ${DST};"
+# MkDocs default config
+if [ ! -z "${ICON}" ] ; then
+    export ICON=material/${ICON##*/}
+fi
 # Generate index if absent
 if [ ! -f "${SRC}/index.md" -a ! -f "${SRC}/README.md" ] ; then
     echo "Index file (index.md) not found. It will be created using a script..."
