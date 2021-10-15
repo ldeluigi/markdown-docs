@@ -97,6 +97,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: 
       - release
+      - push-to-registries
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
