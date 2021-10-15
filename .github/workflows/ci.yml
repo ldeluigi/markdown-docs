@@ -107,6 +107,7 @@ jobs:
         with:
           src: .
           dst: ./result
+          icon: file-document-edit
       - name: Deploy GH Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
