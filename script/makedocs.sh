@@ -29,7 +29,7 @@ RELATIVE_DST=${RELATIVE_DST%/}
 DST=${WORKSPACE%/}/${RELATIVE_DST}
 # Temp files
 TMP_DST=/tmp/makedocs
-echo "Source: ${SRC}; Destination: ${DST}"
+echo "Source: ${SRC}; Destination: ${DST};"
 # Generate index if absent
 if [ ! -f "${SRC}/index.md" -a ! -f "${SRC}/README.md" ] ; then
     echo "Index file (index.md) not found. It will be created using a script..."
@@ -41,7 +41,6 @@ export SRC_THEME="${SRC}/theme"
 mkdir -p "${SRC_THEME}" && cp -f /usr/local/src/theme.main.html "${SRC_THEME}/main.html" && cp -f /usr/local/src/theme.404.html "${SRC_THEME}/404.html"
 CLEAN_THEME=true
 # Convert docs to temp folder
-echo "Language: ${LANGUAGE}"
 ( cd "${SRC}" ; mkdocs build -c -f /usr/local/src/mkdocs.yml -d "${TMP_DST}" )
 # Start cleanup phase
 echo "Cleanup..."

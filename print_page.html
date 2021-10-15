@@ -379,11 +379,19 @@
         <span class="nt">with</span><span class="p">:</span>
           <span class="nt">src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">doc</span>
           <span class="nt">dst</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">generated</span>
-          <span class="nt">language</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lang</span>
 </code></pre></div>
 This means that every markdown file inside the <code>doc</code> folder in the current workspace will be converted and mapped to a corresponding HTML file inside the <code>generated</code> directory. You can pass <code>.</code> as src to search the entire repo for markdown files. <code>dst</code> folder will be emptied before generation.</p>
-<p><code>lang</code> is optinal paramater(default en). This allows to change language and search settings in mkdocs.</p>
+<h4 id="index-additional-information">Additional information</h4>
 <p>In order to make the "last edit date" plugin work you need to clone the full history of your documentation inside your CI. With GitHub actions this can be done using the option <code>fetch-depth: 0</code> with the <code>actions/checkout@v2</code> step.</p>
+<h4 id="index-complete-usage-example-with-all-the-parameters">Complete usage example with all the parameters</h4>
+<div class="highlight"><pre><span></span><code>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Generate HTML from Markdown</span>
+        <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ldeluigi/markdown-docs@master</span>
+        <span class="nt">with</span><span class="p">:</span>
+          <span class="nt">src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">doc</span>
+          <span class="nt">dst</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">generated</span>
+          <span class="nt">language</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">en</span>
+</code></pre></div>
+<p><code>language</code> is an optional paramater (defaults to <code>en</code>) that allows to change <a href="https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/#site-language">language features</a> and <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#built-in-search">search features</a>.</p>
 <h3 id="index-as-docker-builder">As Docker builder</h3>
 <p>To use <strong>markdown-docs</strong> as a Docker builder stage use the following syntax in your Dockerfile:<br />
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">deloo/markdown-docs</span> <span class="k">AS</span> <span class="s">builder</span>
@@ -397,9 +405,16 @@ This means that every markdown file inside the <code>doc</code> folder in the cu
 <span class="k">COPY</span> --from<span class="o">=</span>builder /home/dst /var/www/static/
 </code></pre></div>
 This means that first docker stage creates a container where it runs the makedocs script, then will copy the resulting, generated HTML files in the production image, specifically in <code>/var/www/static</code>. This can be useful for your static website hosting. See <a href="https://github.com/ldeluigi/markdown-docs/wiki">the Wiki</a> for more examples.</p>
+<h4 id="index-environment-variables">Environment variables</h4>
+<p>There are some environment variables that control the behaviour of the builder. These are:
+<div class="highlight"><pre><span></span><code><span class="k">ENV</span> <span class="nv">WORKSPACE</span><span class="o">=</span>/home
+<span class="k">ENV</span> <span class="nv">LANGUAGE</span><span class="o">=</span>en
+</code></pre></div>
+<code>WORKSPACE</code> selects the path in which the main script is run. This path should be the root of your working directory, inside which there are both the source folder and the destination folder.
+<code>LANGUAGE</code> selects the documentation .</p>
 <h2 id="index-notes-about-documenting-your-software">Notes about documenting your software</h2>
 <p>The idea behind <strong>markdown-docs</strong> is that all the documentation that can be written in separate files from the code should be mantained like the code documentation, that is thinking about the content and not the appearence. In addition, some of the most important tools for documentation are UML diagrams. In particular, one of the most maintainable way to draw UMLs is <a href="https://plantuml.com/">PlantUML</a>, which can generate UML diagrams for a text specification.<br />
-One of the most important features of <strong>markdown-docs</strong> is the support of PlantUML syntax embedded inside documentation sources, in Markdown.</p>
+One of the most important features of <strong>markdown-docs</strong> is the support of PlantUML syntax embedded inside documentation sources, in Markdown.<a href="https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/#site-language">language features</a> and <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#built-in-search">search features</a></p>
 <h2 id="index-contributing">Contributing</h2>
 <p>Fork this project and make PRs.</p>
 <h3 id="index-local-tests">Local tests</h3>

@@ -6,22 +6,22 @@ branding:
   color: 'gray-dark'
 inputs:
   src:
-    description: 'Source path'
+    description: 'Source path. Default: .'
     required: true
     default: '.'
   dst:
-    description: 'Output path'
+    description: 'Output path. Default: docs'
     required: true
     default: 'docs'
   language:
-    description: 'Language in mkdocs'
+    description: 'Language selector for mkdocs search feature and more. Default: en'
     required: false
     default: 'en'
 runs:
   using: 'docker'
   image: 'docker://deloo/markdown-docs'
+  env:
+    LANGUAGE: ${{ inputs.language }}
   args:
     - ${{ inputs.src }}
     - ${{ inputs.dst }}
-  env:
-    LANGUAGE: ${{ inputs.language }}
