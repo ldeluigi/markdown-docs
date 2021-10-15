@@ -1,8 +1,6 @@
 name: 'Markdown Docs'
 author: ldeluigi
-description: >
-  Generates a documentation website from Markdown files with many extensions: 
-  https://github.com/ldeluigi/markdown-docs#readme
+description: Generates a documentation website from Markdown files with many extensions: https://github.com/ldeluigi/markdown-docs#readme
 branding:
   icon: 'file-text'
   color: 'gray-dark'
