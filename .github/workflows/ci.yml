@@ -14,6 +14,7 @@ jobs:
     outputs:
       doc-updated: ${{ steps.filter.outputs.md }}
     steps:
+      - uses: actions/checkout@v2
       - id: filter
         uses: dorny/paths-filter@v2
         with:
