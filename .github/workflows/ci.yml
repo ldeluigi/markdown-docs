@@ -8,6 +8,19 @@ on:
   schedule:
     - cron: "0 8 1 * *"
 jobs:
+  check-paths:
+    runs-on: ubuntu-latest
+    name: Check pushed paths
+    outputs:
+      doc-updated: ${{ steps.filter.outputs.md }}
+    steps:
+      - id: filter
+        uses: dorny/paths-filter@v2
+        with:
+          filters: |
+            md:
+              - '**/*.md'
+              - '*.md'
   test:
     runs-on: ubuntu-latest
     name: Test on self
@@ -98,6 +111,8 @@ jobs:
     needs: 
       - release
       - push-to-registries
+      - check-paths
+    if: ${{ always() && !(contains(needs.*.result, 'failure')) && ((needs.check-paths.result == 'success' && needs.check-paths.outputs.doc-updated == 'true') || (needs.release.result == 'success' && needs.push-to-registries.result == 'success')) }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
