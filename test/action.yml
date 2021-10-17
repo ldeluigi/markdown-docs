@@ -16,6 +16,11 @@ inputs:
 runs:
   using: 'docker'
   image: '../Dockerfile'
+  env:
+    LANGUAGE: en
+    ICON: check-all
+    PRIMARY_COLOR: black
+    SECONDARY_COLOR: red
   args:
     - ${{ inputs.src }}
     - ${{ inputs.dst }}
