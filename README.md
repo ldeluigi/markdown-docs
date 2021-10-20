@@ -19,6 +19,7 @@ This repository contains the definition of a Docker image that can be used both 
 - **git-revision-date-localized**: Enables linking last edit date of the page. See the [docs](https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/index.html).
 - **git-authors-plugin**: Enables linking git authors of the page. See the [docs](https://timvink.github.io/mkdocs-git-authors-plugin/index.html).
 - **literate-nav**: Allows to customize navigation menus for each folder. The navigation menu must be specified inside a `SUMMARY.md` file. For more information see the [docs](https://oprypin.github.io/mkdocs-literate-nav/#usage).
+- **notebooks**: `.ipynb` file support.
 
 ## Usage
 You can use **markdown-docs** both as a [GitHub Acton](#as-github-action) or a [Docker builder stage](#as-docker-builder) inside your dockerfile.
