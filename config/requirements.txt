@@ -8,6 +8,7 @@ mkdocs-git-authors-plugin
 mkdocs-print-site-plugin
 mkdocs-localsearch
 mkdocs-literate-nav
+mkdocs-jupyter
 
 plantuml-markdown
 markdown-include
