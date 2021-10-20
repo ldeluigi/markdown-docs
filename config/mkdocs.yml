@@ -41,6 +41,10 @@ plugins:
   #     format: svg
   #     embed_format: '{img_open}{img_src}{img_close}'
   #     sources: '*.drawio'
+  - mkdocs-jupyter:
+      execute: false
+      ignore_h1_titles: True
+      include_source: True
   - literate-nav:
       nav_file: SUMMARY.md
       implicit_index: true

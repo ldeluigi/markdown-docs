@@ -65,7 +65,7 @@
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
-    <script>function __prefix(e){return new URL("/",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
       <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
@@ -369,6 +369,7 @@
 <li><strong>git-revision-date-localized</strong>: Enables linking last edit date of the page. See the <a href="https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/index.html">docs</a>.</li>
 <li><strong>git-authors-plugin</strong>: Enables linking git authors of the page. See the <a href="https://timvink.github.io/mkdocs-git-authors-plugin/index.html">docs</a>.</li>
 <li><strong>literate-nav</strong>: Allows to customize navigation menus for each folder. The navigation menu must be specified inside a <code>SUMMARY.md</code> file. For more information see the <a href="https://oprypin.github.io/mkdocs-literate-nav/#usage">docs</a>.</li>
+<li><strong>notebooks</strong>: <code>.ipynb</code> file support.</li>
 </ul>
 <h2 id="index-usage">Usage</h2>
 <p>You can use <strong>markdown-docs</strong> both as a <a href="#index-as-github-action">GitHub Acton</a> or a <a href="#index-as-docker-builder">Docker builder stage</a> inside your dockerfile.</p>
@@ -476,7 +477,7 @@ docker run -e <span class="nv">WORKSPACE</span><span class="o">=</span>/github/w
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-<script id="__config" type="application/json">{"base": "/", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+<script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
 
 <script src="https://unpkg.com/iframe-worker/polyfill"></script>
