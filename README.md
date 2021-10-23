@@ -91,7 +91,8 @@ One of the most important features of **markdown-docs** is the support of PlantU
 
 
 ## Contributing
-Fork this project and make PRs.
+Fork this project and make PRs, if you can't you can create an issue.
+
 ### Local tests
 With **Docker** *(suggested)*:
 ```bash
