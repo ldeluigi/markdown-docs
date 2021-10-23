@@ -65,7 +65,7 @@
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
-    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("/",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
       <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
@@ -430,7 +430,7 @@ This means that first docker stage creates a container where it runs the makedoc
 <p>The idea behind <strong>markdown-docs</strong> is that all the documentation that can be written in separate files from the code should be mantained like the code documentation, that is thinking about the content and not the appearence. In addition, some of the most important tools for documentation are UML diagrams. In particular, one of the most maintainable way to draw UMLs is <a href="https://plantuml.com/">PlantUML</a>, which can generate UML diagrams for a text specification.<br />
 One of the most important features of <strong>markdown-docs</strong> is the support of PlantUML syntax embedded inside documentation sources, in Markdown.<a href="https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/#site-language">language features</a> and <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#built-in-search">search features</a></p>
 <h2 id="index-contributing">Contributing</h2>
-<p>Fork this project and make PRs.</p>
+<p>Fork this project and make PRs, if you can't you can create an issue.</p>
 <h3 id="index-local-tests">Local tests</h3>
 <p>With <strong>Docker</strong> <em>(suggested)</em>:
 <div class="highlight"><pre><span></span><code>docker build -t markdown-docs . --no-cache
@@ -477,7 +477,7 @@ docker run -e <span class="nv">WORKSPACE</span><span class="o">=</span>/github/w
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-<script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+<script id="__config" type="application/json">{"base": "/", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
 
 <script src="https://unpkg.com/iframe-worker/polyfill"></script>
