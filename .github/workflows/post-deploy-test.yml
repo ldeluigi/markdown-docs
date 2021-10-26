@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run action
-        uses: ./test/test_on_ghcr.yml
+        uses: ./test/test_on_ghcr/
         with:
           src: .
           dst: ./result
@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run action
-        uses: ./test/test_on_hub.yml
+        uses: ./test/test_on_hub/
         with:
           src: .
           dst: ./result
