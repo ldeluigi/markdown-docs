@@ -1,1 +1,20 @@
+name: Test
+on:
+  workflow_call:
 
+jobs:
+  test1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run action
+        uses: ./test/test_on_self.yml
+        with:
+          src: .
+          dst: ./result
+          language: en
+          primary-color: black
+          secondary-color: red
+      - name: Verify result
+        run: |
+          test ! -z "$(ls -A ./result)"
