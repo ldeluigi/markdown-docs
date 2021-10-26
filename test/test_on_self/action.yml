@@ -42,7 +42,7 @@ inputs:
     default: indigo
 runs:
   using: 'docker'
-  image: '../Dockerfile'
+  image: ../../Dockerfile
   env:
     LANGUAGE: ${{ inputs.language }}
     ICON: ${{ inputs.icon }}
