@@ -46,7 +46,7 @@ inputs:
     default: indigo
 runs:
   using: 'docker'
-  image: 'docker://deloo/markdown-docs'
+  image: 'docker://ghcr.io/ldeluigi/markdown-docs'
   env:
     LANGUAGE: ${{ inputs.language }}
     ICON: ${{ inputs.icon }}
