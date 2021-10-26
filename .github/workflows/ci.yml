@@ -28,24 +28,8 @@ jobs:
               - '**/*.md'
               - '*.md'
   test:
-    runs-on: ubuntu-latest
     name: Tests on self
-    strategy:
-      matrix:
-        test-name: ["test_on_self.yml"]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run action
-        uses: './test/${{ matrix.test-name }}'
-        with:
-          src: .
-          dst: ./result
-          language: en
-          primary-color: black
-          secondary-color: red
-      - name: Verify result
-        run: |
-          test ! -z "$(ls -A ./result)"
+    uses: .github/workflows/test.yml@master
   release:
     name: GitHub Release Job
     if: ${{ needs.checks.outputs.should-release == 'true' }}
@@ -111,29 +95,10 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-  test-on-registries:
-    name: Test on pushed Registries
+  post-deploy-test:
+    name: Post-deploy test
     needs: [push-to-registries]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        test-name: ["test_on_ghcr.yml", "test_on_hub.yml"]
-        language: ["en", "it"]
-        primary-color: ["indigo", "black"]
-        secondary-color: ["indigo", "red"]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run action
-        uses: './test/${{ matrix.test-name }}'
-        with:
-          src: .
-          dst: ./result
-          language: ${{ matrix.language }}
-          primary-color: ${{ matrix.primary-color }}
-          secondary-color: ${{ matrix.secondary-color }}
-      - name: Verify result
-        run: |
-          test ! -z "$(ls -A ./result)"
+    uses: .github/workflows/post-deploy-test.yml@master
   update-gh-pages:
     name: Generate and upload new GitHub Pages
     runs-on: ubuntu-latest
