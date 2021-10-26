@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run action
-        uses: ./test/test_on_self.yml
+        uses: ./test/test_on_self/
         with:
           src: .
           dst: ./result
