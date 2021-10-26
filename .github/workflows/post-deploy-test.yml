@@ -1,1 +1,39 @@
+name: Post-deploy Test
 
+on:
+  workflow_call:
+
+jobs:
+  test1:
+    name: Test on GitHub Container Registry
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run action
+        uses: ./test/test_on_ghcr.yml
+        with:
+          src: .
+          dst: ./result
+          language: en
+          primary-color: black
+          secondary-color: red
+      - name: Verify result
+        run: |
+          test ! -z "$(ls -A ./result)"
+  test2:
+    name: Test on Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run action
+        uses: ./test/test_on_hub.yml
+        with:
+          src: .
+          dst: ./result
+          language: en
+          primary-color: black
+          secondary-color: red
+      - name: Verify result
+        run: |
+          test ! -z "$(ls -A ./result)"
+    
