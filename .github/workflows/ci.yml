@@ -29,7 +29,7 @@ jobs:
               - '*.md'
   test:
     name: Tests on self
-    uses: .github/workflows/test.yml@master
+    uses: ldeluigi/markdown-docs/.github/workflows/test.yml@master
   release:
     name: GitHub Release Job
     if: ${{ needs.checks.outputs.should-release == 'true' }}
@@ -98,7 +98,7 @@ jobs:
   post-deploy-test:
     name: Post-deploy test
     needs: [push-to-registries]
-    uses: .github/workflows/post-deploy-test.yml@master
+    uses: ldeluigi/markdown-docs/.github/workflows/post-deploy-test.yml@master
   update-gh-pages:
     name: Generate and upload new GitHub Pages
     runs-on: ubuntu-latest
