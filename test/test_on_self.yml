@@ -13,14 +13,41 @@ inputs:
     description: 'Output path'
     required: true
     default: 'docs'
+  language:
+    description: >
+      Language selector for mkdocs search feature and more.
+      Default: en
+    required: false
+    default: 'en'
+  icon:
+    description: >
+      One of https://materialdesignicons.com icons.
+      Displayed at the top left, links to the home.
+      Default: library
+    required: false
+    default: 'library'
+  primary-color:
+    description: >
+      One of red, pink, purple, deep purple, indigo, blue, light blue, cyan, teal, green,
+      light green, lime, yellow, amber, orange, deep orange.
+      Default: indigo
+    required: false
+    default: indigo
+  secondary-color:
+    description: >
+      One of red, pink, purple, deep purple, indigo, blue, light blue, cyan, teal, green, light green,
+      lime, yellow, amber, orange, deep orange.
+      Default: indigo
+    required: false
+    default: indigo
 runs:
   using: 'docker'
   image: '../Dockerfile'
   env:
-    LANGUAGE: en
-    ICON: check-all
-    PRIMARY_COLOR: black
-    SECONDARY_COLOR: red
+    LANGUAGE: ${{ inputs.language }}
+    ICON: ${{ inputs.icon }}
+    PRIMARY_COLOR: ${{ inputs.primary-color }}
+    SECONDARY_COLOR: ${{ inputs.secondary-color }}
   args:
     - ${{ inputs.src }}
     - ${{ inputs.dst }}
