@@ -76,6 +76,7 @@ plugins:
       enumerate_headings: true
       enumerate_figures: true
       path_to_pdf: ""
+      add_print_site_banner: true
 
 markdown_extensions:
   - markdown_include.include:
