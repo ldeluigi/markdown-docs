@@ -22,6 +22,7 @@ jobs:
         uses: EasyDesk/action-semver-checkout@v1
       - id: filter
         uses: dorny/paths-filter@v2
+        if: github.event_name != 'schedule'
         with:
           filters: |
             md:
