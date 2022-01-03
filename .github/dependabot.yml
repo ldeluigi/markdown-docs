@@ -19,4 +19,8 @@ updates:
       - "dependency"
       - "bot"
     target-branch: "master"
-    
+  
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "monthly"  
