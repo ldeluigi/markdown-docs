@@ -1,5 +1,6 @@
 name: CI/CD
 on:
+  pull_request:
   push:
     branches: 
       - "*"
@@ -7,6 +8,8 @@ on:
       - "*"
   schedule:
     - cron: "0 8 1 * *"
+
+
 jobs:
   checks:
     runs-on: ubuntu-latest
@@ -31,6 +34,7 @@ jobs:
   test:
     name: Tests on self
     uses: ldeluigi/markdown-docs/.github/workflows/test.yml@master
+
   release:
     name: GitHub Release Job
     if: ${{ needs.checks.outputs.should-release == 'true' }}
@@ -43,6 +47,7 @@ jobs:
         with:
           version: ${{ needs.checks.outputs.version }}
           prerelease: ${{ needs.checks.outputs.is-prerelease }}
+
   push-to-registries:
     name: Push Docker image to multiple registries
     runs-on: ubuntu-latest
@@ -96,10 +101,12 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
   post-deploy-test:
     name: Post-deploy test
     needs: [push-to-registries]
     uses: ldeluigi/markdown-docs/.github/workflows/post-deploy-test.yml@master
+
   update-gh-pages:
     name: Generate and upload new GitHub Pages
     runs-on: ubuntu-latest
