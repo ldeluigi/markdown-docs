@@ -70,7 +70,7 @@ plugins:
       # Table of contents
       add_table_of_contents: true
       toc_title: 'Index'
-      toc_depth: 6
+      toc_depth: 3
       # Content-related
       add_full_urls: false
       enumerate_headings: true
