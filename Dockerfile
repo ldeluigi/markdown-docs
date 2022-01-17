@@ -1,4 +1,4 @@
-FROM python:3.8-alpine
+FROM python:3.10.1-alpine
 
 # Download PlantUML + dependencies
 RUN mkdir -p /usr/share/man/man1 && apk add --no-cache openjdk8 graphviz && \
@@ -10,9 +10,9 @@ RUN chmod +x /usr/local/bin/plantuml
 
 # Download Python Markdown + dependencies
 COPY config/requirements.txt /usr/local/src/requirements.txt
-RUN apk add --no-cache gcc git musl-dev && \
+RUN apk add --no-cache gcc git musl-dev libffi-dev && \
   pip install --no-cache-dir -r /usr/local/src/requirements.txt && \
-  apk del gcc musl-dev
+  apk del gcc musl-dev libffi-dev
 
 # Configuration
 COPY config/mkdocs.yml /usr/local/src/mkdocs.yml
