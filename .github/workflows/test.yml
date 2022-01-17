@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # All history + tags
       - name: Run action
         uses: ./test/test_on_self/
         with:
