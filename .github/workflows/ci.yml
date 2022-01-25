@@ -118,7 +118,7 @@ jobs:
       - push-to-registries
       - checks
     if: ${{ always() && !(contains(needs.*.result, 'failure')) && ((needs.checks.result == 'success' && needs.checks.outputs.doc-updated == 'true') || (needs.release.result == 'success' && needs.push-to-registries.result == 'success')) }}
-    concurrency: gh-pages
+    concurrency: github-pages
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
