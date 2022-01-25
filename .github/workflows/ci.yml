@@ -42,6 +42,7 @@ jobs:
       - checks
       - test
     runs-on: ubuntu-20.04
+    concurrency: release
     steps:
       - uses: EasyDesk/action-semver-release@v1
         with:
@@ -51,13 +52,14 @@ jobs:
   push-to-registries:
     name: Push Docker image to multiple registries
     runs-on: ubuntu-latest
-    if: ${{ needs.checks.outputs.should-release == 'true' || github.event_name == 'schedule' }}
+    if: github.event_name != 'pull_request'
     needs:
       - test
       - checks
     permissions:
       packages: write
       contents: write
+    concurrency: registries
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -71,11 +73,12 @@ jobs:
             ghcr.io/ldeluigi/markdown-docs
           # generate Docker tags based on the following events/attributes
           tags: |
+            type=edge
             type=schedule,pattern=nightly
             type=schedule,pattern=auto-{{date 'YYYYMMDDHHmm'}}
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}},enable=${{ !startsWith(github.ref, 'refs/tags/v0.') }}
+            type=semver,pattern={{version}},enable=${{ needs.checks.outputs.should-release == 'true' }}
+            type=semver,pattern={{major}}.{{minor}},enable=${{ needs.checks.outputs.should-release == 'true' }}
+            type=semver,pattern={{major}},enable=${{ needs.checks.outputs.should-release == 'true' && !startsWith(github.ref, 'refs/tags/v0.') }}
           labels: |
             maintainer=ldeluigi
             org.opencontainers.image.title=Markdown Docs
@@ -115,6 +118,7 @@ jobs:
       - push-to-registries
       - checks
     if: ${{ always() && !(contains(needs.*.result, 'failure')) && ((needs.checks.result == 'success' && needs.checks.outputs.doc-updated == 'true') || (needs.release.result == 'success' && needs.push-to-registries.result == 'success')) }}
+    concurrency: gh-pages
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
