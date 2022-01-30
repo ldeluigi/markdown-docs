@@ -1,11 +1,11 @@
 mkdocs==1.2.3
 mkdocs-exclude==1.0.2
-mkdocs-material==8.1.8
+mkdocs-material==8.1.9
 mkdocs-minify-plugin==0.5.0
 #mkdocs-drawio-exporter
 mkdocs-git-revision-date-localized-plugin==0.11.1
 mkdocs-git-authors-plugin==0.6.3
-mkdocs-print-site-plugin==2.2.5
+mkdocs-print-site-plugin==2.3
 mkdocs-localsearch==0.9.1
 mkdocs-literate-nav==0.4.1
 mkdocs-jupyter==0.19.0
