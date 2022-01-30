@@ -1,6 +1,11 @@
 # Markdown Docs
 _The same readme, built with this: [here](https://ldeluigi.github.io/markdown-docs/)!_  
 
+[![CI/CD](https://github.com/ldeluigi/markdown-docs/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/ldeluigi/markdown-docs/actions/workflows/ci.yml)
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ldeluigi/markdown-docs)](https://github.com/ldeluigi/markdown-docs)
+[![Docker Pulls](https://img.shields.io/docker/pulls/deloo/markdown-docs)](https://hub.docker.com/r/deloo/markdown-docs)
+[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ldeluigi/markdown-docs?include_prereleases)](https://github.com/ldeluigi/markdown-docs/releases)
+
 This repository contains the definition of a Docker image that can be used both as a **[builder](#as-docker-builder)** stage and as an **[action](#as-github-action)**.
 
 **markdown-docs** is implemented as a jam of stuff you don't even need to know about. Just assume that everything is supported until you find that it's not, then submit an issue to add support for even that thing. Only if you really need it.
