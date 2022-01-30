@@ -3,7 +3,7 @@ _The same readme, built with this: [here](https://ldeluigi.github.io/markdown-do
 
 [![CI/CD](https://github.com/ldeluigi/markdown-docs/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/ldeluigi/markdown-docs/actions/workflows/ci.yml)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ldeluigi/markdown-docs?logo=github)](https://github.com/ldeluigi/markdown-docs)
-[![Docker Pulls](https://img.shields.io/docker/pulls/deloo/markdown-docs)](https://hub.docker.com/r/deloo/markdown-docs)
+[![Docker Pulls](https://img.shields.io/docker/pulls/deloo/markdown-docs?logo=docker)](https://hub.docker.com/r/deloo/markdown-docs)
 [![GitHub marketplace](https://img.shields.io/badge/marketplace-markdown--docs-blue?logo=github)](https://github.com/marketplace/actions/markdown-docs)
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ldeluigi/markdown-docs?include_prereleases&logo=github)](https://github.com/ldeluigi/markdown-docs/releases)
 
