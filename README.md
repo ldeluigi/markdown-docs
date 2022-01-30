@@ -14,18 +14,20 @@ This repository contains the definition of a Docker image that can be used both 
 ## Supported Markdown extensions:
 - The default, standard, Markdown syntax, described at [this website](https://daringfireball.net/projects/markdown/syntax), with [these differences](https://python-markdown.github.io/#differences).
 - **markdown_include**: Command that embeds a markdown file into another. Headers will be shifted to subheaders relative to enclosing header. See the [readme](https://github.com/cmacmackin/markdown-include/).
-- **plantuml_markdown**: See the official [readme](https://github.com/mikitex70/plantuml-markdown#readme). Supports non-UML tags like `@startjson` or math equations too.
-- **arithmatex**: See the [docs](https://facelessuser.github.io/pymdown-extensions/extensions/arithmatex/). Provides mathematical style and fonts for expressions.
-- **admonition** and **details**: See the [admonitions docs](https://squidfunk.github.io/mkdocs-material/reference/admonitions/) and [details docs](https://facelessuser.github.io/pymdown-extensions/extensions/details/). Provides highlighted text cells for many purposes. Details are also called [collapsible blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks).
+- **plantuml_markdown**: Don't you know [PlantUML](https://plantuml.com/) already? For usage explanation see the [readme](https://github.com/mikitex70/plantuml-markdown#readme). Supports non-UML tags like `@startjson` or math equations too.
+- **arithmatex**: Provides mathematical style and fonts for expressions. See the [docs](https://facelessuser.github.io/pymdown-extensions/extensions/arithmatex/).
+- **admonition** and **details**: Provides highlighted text cells for many purposes. See the [admonitions docs](https://squidfunk.github.io/mkdocs-material/reference/admonitions/) and [details docs](https://facelessuser.github.io/pymdown-extensions/extensions/details/). Details are also called [collapsible blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks).
 - **keys**: You can embed keyboard symbols in text. See the [docs](https://facelessuser.github.io/pymdown-extensions/extensions/keys/).
 - **tabs**: Enables content tabs. See the [docs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs/).
 - **tasklist**: Enables GitHub style tasks list. See the [docs](https://facelessuser.github.io/pymdown-extensions/extensions/tasklist/).
 - **abbreviations**: Enables explanations for abbrevations. See the [docs](https://python-markdown.github.io/extensions/abbreviations/).
 - **footnotes**: Enables footnotes. See the [docs](https://python-markdown.github.io/extensions/footnotes/).
-- **git-revision-date-localized**: Enables linking last edit date of the page. See the [docs](https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/index.html).
-- **git-authors-plugin**: Enables linking git authors of the page. See the [docs](https://timvink.github.io/mkdocs-git-authors-plugin/index.html).
 - **literate-nav**: Allows to customize navigation menus for each folder. The navigation menu must be specified inside a `SUMMARY.md` file. For more information see the [docs](https://oprypin.github.io/mkdocs-literate-nav/#usage).
-- **notebooks**: `.ipynb` file support.
+
+## Supported plugins
+- **git-revision-date-localized**: Displays the last edit date of the page. The date appears automatically at the bottom if a git history is found. See the [docs](https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/index.html) for more information.
+- **git-authors-plugin**: Displays git authors of the page. Authors appear automatically at the bottom if a git history is found. See the [docs](https://timvink.github.io/mkdocs-git-authors-plugin/index.html) for more information.
+- **notebooks**: `.ipynb` file rendering support.
 
 ## Usage
 You can use **markdown-docs** both as a [GitHub Acton](#as-github-action) or a [Docker builder stage](#as-docker-builder) inside your dockerfile.
