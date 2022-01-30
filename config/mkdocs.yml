@@ -74,6 +74,7 @@ plugins:
       # Content-related
       add_full_urls: false
       enumerate_headings: true
+      enumerate_headings_depth: 3
       enumerate_figures: true
       path_to_pdf: ""
       add_print_site_banner: true
