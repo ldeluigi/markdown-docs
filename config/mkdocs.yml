@@ -42,6 +42,7 @@ plugins:
   #     embed_format: '{img_open}{img_src}{img_close}'
   #     sources: '*.drawio'
   - mkdocs-jupyter:
+      include: ["*.ipynb"]
       execute: false
       ignore_h1_titles: True
       include_source: True
