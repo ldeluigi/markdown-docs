@@ -1,4 +1,4 @@
-site_name: !ENV REPOSITORY
+site_name: !ENV TITLE
 site_url: ""
 use_directory_urls: false
 docs_dir: !ENV SRC

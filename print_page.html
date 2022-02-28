@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.3">
     
     
       
@@ -29,7 +29,7 @@
       
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -415,17 +415,21 @@ This means that every markdown file inside the <code>doc</code> folder in the cu
 <span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doc</span><span class="w"></span>
 <span class="w">          </span><span class="nt">dst</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">generated</span><span class="w"></span>
+<span class="w">          </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Markdown Docs</span><span class="w"></span>
 <span class="w">          </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">en</span><span class="w"></span>
 <span class="w">          </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">library</span><span class="w"></span>
 <span class="w">          </span><span class="nt">primary-color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">indigo</span><span class="w"></span>
 <span class="w">          </span><span class="nt">secondary-color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">indigo</span><span class="w"></span>
+<span class="w">          </span><span class="nt">hide-repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 </code></pre></div>
 <h5 id="index-additional-parameters-info">Additional parameters info</h5>
 <ul>
+<li><code>title</code> is an optional parameter (defaults to the name of the repository, such as <code>ldeluigi/markdown-docs</code> or <code>Documentation</code> if no repo is detected) that sets the title displayed at the top of the documentation website.</li>
 <li><code>language</code> is an optional paramater (defaults to <code>en</code>) that allows to change <a href="https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/#site-language">language features</a> and <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#built-in-search">search features</a>.</li>
 <li><code>icon</code> is an optional parameter (defaults to <code>library</code>) that selects the main top-left icon of the documentation website. Can be one of the icons from <a href="https://materialdesignicons.com">Material Design Icons</a>.</li>
 <li><code>primary-color</code> is an optional parameter (defaults to <code>indigo</code>) that selects the main color of the documentation website. For more information, see the <a href="https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#primary-color">docs</a>.</li>
 <li><code>secondary-color</code> is an optional parameter (defaults to <code>indigo</code>) that selects the accent color of the documentation website. For more information, see the <a href="https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#accent-color">docs</a>.</li>
+<li><code>hide-repository</code> is an optional parameter (defaults to <code>false</code>) that, if set to <code>true</code>, will hide every reference to the source repo. Useful for private repos.</li>
 </ul>
 <h3 id="index-as-docker-builder">As Docker builder</h3>
 <p>To use <strong>markdown-docs</strong> as a Docker builder stage use the following syntax in your Dockerfile:<br />
@@ -444,13 +448,14 @@ This means that first docker stage creates a container where it runs the makedoc
 <p>There are some environment variables that control the behaviour of the builder. These are:
 <div class="highlight"><pre><span></span><code><span class="k">ENV</span><span class="w"> </span><span class="nv">WORKSPACE</span><span class="o">=</span>/home
 <span class="c"># Optionals (with their default values)</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">TITLE</span><span class="o">=</span>Markdown Docs
 <span class="k">ENV</span><span class="w"> </span><span class="nv">LANGUAGE</span><span class="o">=</span>en
 <span class="k">ENV</span><span class="w"> </span><span class="nv">ICON</span><span class="o">=</span>library
 <span class="k">ENV</span><span class="w"> </span><span class="nv">PRIMARY_COLOR</span><span class="o">=</span>indigo
 <span class="k">ENV</span><span class="w"> </span><span class="nv">SECONDARY_COLOR</span><span class="o">=</span>indigo
 </code></pre></div>
 * <code>WORKSPACE</code> selects the path in which the main script is run. This path should be the root of your working directory, inside which there are both the source folder and the destination folder.
-* <code>LANGUAGE</code>, <code>ICON</code>, <code>PRIMARY_COLOR</code>, <code>SECONDARY_COLOR</code> are all described in <a href="#index-additional-parameters-info">this section</a>.</p>
+* <code>TITLE</code>, <code>LANGUAGE</code>, <code>ICON</code>, <code>PRIMARY_COLOR</code>, <code>SECONDARY_COLOR</code> are all described in <a href="#index-additional-parameters-info">this section</a>.</p>
 <h2 id="index-notes-about-documenting-your-software">Notes about documenting your software</h2>
 <p>The idea behind <strong>markdown-docs</strong> is that all the documentation that can be written in separate files from the code should be mantained like the code documentation, that is thinking about the content and not the appearence. In addition, some of the most important tools for documentation are UML diagrams. In particular, one of the most maintainable way to draw UMLs is <a href="https://plantuml.com/">PlantUML</a>, which can generate UML diagrams for a text specification.<br />
 One of the most important features of <strong>markdown-docs</strong> is the support of PlantUML syntax embedded inside documentation sources, in Markdown.</p>
@@ -503,7 +508,7 @@ docker run -e <span class="nv">WORKSPACE</span><span class="o">=</span>/github/w
 
 
     
-      <script src="assets/javascripts/bundle.8aa65030.min.js"></script>
+      <script src="assets/javascripts/bundle.b88e97c5.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

@@ -44,14 +44,26 @@ inputs:
       Default: indigo
     required: false
     default: indigo
+  hide-repository:
+    description: >
+      If set to true, will generate a website that doesn't link back to the repository on GitHub. Defaults to false.
+    required: false
+    default: 'false'
+  title:
+    description: >
+      The title for the documentation website. Defaults to the name of the repository.
+    required: false
+    default: ${{ github.repository }}
 runs:
   using: 'docker'
   image: 'docker://ghcr.io/ldeluigi/markdown-docs'
   env:
+    TITLE: ${{ inputs.title }}
     LANGUAGE: ${{ inputs.language }}
     ICON: ${{ inputs.icon }}
     PRIMARY_COLOR: ${{ inputs.primary-color }}
     SECONDARY_COLOR: ${{ inputs.secondary-color }}
+    HIDE_REPOSITORY: ${{ inputs.hide-repository }}
   args:
     - ${{ inputs.src }}
     - ${{ inputs.dst }}

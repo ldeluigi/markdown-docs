@@ -53,16 +53,20 @@ In order to make the "last edit date" plugin work you need to clone the full his
         with:
           src: doc
           dst: generated
+          title: Markdown Docs
           language: en
           icon: library
           primary-color: indigo
           secondary-color: indigo
+          hide-repository: false
 ```
 ##### Additional parameters info
+* `title` is an optional parameter (defaults to the name of the repository, such as `ldeluigi/markdown-docs` or `Documentation` if no repo is detected) that sets the title displayed at the top of the documentation website.
 * `language` is an optional paramater (defaults to `en`) that allows to change [language features](https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/#site-language) and [search features](https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#built-in-search).
 * `icon` is an optional parameter (defaults to `library`) that selects the main top-left icon of the documentation website. Can be one of the icons from [Material Design Icons](https://materialdesignicons.com).
 * `primary-color` is an optional parameter (defaults to `indigo`) that selects the main color of the documentation website. For more information, see the [docs](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#primary-color).
 * `secondary-color` is an optional parameter (defaults to `indigo`) that selects the accent color of the documentation website. For more information, see the [docs](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#accent-color).
+* `hide-repository` is an optional parameter (defaults to `false`) that, if set to `true`, will hide every reference to the source repo. Useful for private repos.
 
 ### As Docker builder
 To use **markdown-docs** as a Docker builder stage use the following syntax in your Dockerfile:  
@@ -84,13 +88,14 @@ There are some environment variables that control the behaviour of the builder. 
 ```dockerfile
 ENV WORKSPACE=/home
 # Optionals (with their default values)
+ENV TITLE=Markdown Docs
 ENV LANGUAGE=en
 ENV ICON=library
 ENV PRIMARY_COLOR=indigo
 ENV SECONDARY_COLOR=indigo
 ```
 * `WORKSPACE` selects the path in which the main script is run. This path should be the root of your working directory, inside which there are both the source folder and the destination folder.
-* `LANGUAGE`, `ICON`, `PRIMARY_COLOR`, `SECONDARY_COLOR` are all described in [this section](#additional-parameters-info).
+* `TITLE`, `LANGUAGE`, `ICON`, `PRIMARY_COLOR`, `SECONDARY_COLOR` are all described in [this section](#additional-parameters-info).
 
 
 ## Notes about documenting your software
