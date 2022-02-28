@@ -10,5 +10,5 @@ mkdocs-localsearch==0.9.1
 mkdocs-literate-nav==0.4.1
 mkdocs-jupyter==0.20.0
 
-plantuml-markdown==3.5.1
+plantuml-markdown==3.5.2
 markdown-include==0.6.0
