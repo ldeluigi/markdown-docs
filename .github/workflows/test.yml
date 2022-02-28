@@ -9,7 +9,7 @@ jobs:
       fail-fast: false
       matrix:
         hide-repository: [true, false]
-        title: ['', 'Ok_?@ sadadsa', '😁😋']
+        title: ['', 'Ok_?@ sadadsa 😁']
     steps:
       - uses: actions/checkout@v2
         with:
