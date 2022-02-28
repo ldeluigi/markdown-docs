@@ -53,7 +53,7 @@ inputs:
     description: >
       The title for the documentation website. Defaults to the name of the repository.
     required: false
-    default: ${{ env.GITHUB_REPOSITORY }}
+    default: ${{ github.repository }}
 runs:
   using: 'docker'
   image: 'docker://deloo/markdown-docs'

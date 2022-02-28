@@ -6,6 +6,7 @@ jobs:
   test1:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         hide-repository: [true, false]
         title: ['', 'Ok_?@ sadadsa', '😁😋']
