@@ -3,7 +3,11 @@
 set -e
 # Setup
 WORKSPACE="${WORKSPACE:-${GITHUB_WORKSPACE:-/}}"
-export REPOSITORY="${GITHUB_REPOSITORY:-Documentation}"
+if [ "${HIDE_REPOSITORY}" = "true" ]; then
+    echo "Hiding repository location from documentation."
+    unset GITHUB_REPOSITORY
+fi
+export TITLE="${TITLE:-${GITHUB_REPOSITORY:-Documentation}}"
 # Source folder
 SRC=${1#.}
 # Check if documentation is from GitHub
@@ -37,7 +41,7 @@ fi
 # Generate index if absent
 if [ ! -f "${SRC}/index.md" -a ! -f "${SRC}/README.md" ] ; then
     echo "Index file (index.md) not found. It will be created using a script..."
-    echo "# ${REPOSITORY}" > "${SRC}/index.md"
+    echo "# ${TITLE}" > "${SRC}/index.md"
     CLEAN_INDEX=true
 fi
 # Copy static template files

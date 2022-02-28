@@ -17,6 +17,8 @@ jobs:
           language: en
           primary-color: black
           secondary-color: red
+          hide-repository: false
+          title: Title
       - name: Verify result
         run: |
           test ! -z "$(ls -A ./result)"
@@ -33,6 +35,8 @@ jobs:
           language: en
           primary-color: black
           secondary-color: red
+          hide-repository: false
+          title: Title
       - name: Verify result
         run: |
           test ! -z "$(ls -A ./result)"

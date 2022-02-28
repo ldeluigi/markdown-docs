@@ -5,6 +5,10 @@ on:
 jobs:
   test1:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        hide-repository: [true, false]
+        title: ['', 'Ok_?@ sadadsa', '😁😋']
     steps:
       - uses: actions/checkout@v2
         with:
@@ -17,6 +21,8 @@ jobs:
           language: en
           primary-color: black
           secondary-color: red
+          hide-repository: ${{ matrix.hide-repository }}
+          title: ${{ matrix.title }}
       - name: Verify result
         run: |
           test ! -z "$(ls -A ./result)"
