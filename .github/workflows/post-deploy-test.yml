@@ -8,7 +8,7 @@ jobs:
     name: Test on GitHub Container Registry
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Run action
         uses: ./test/test_on_ghcr/
         with:
@@ -26,7 +26,7 @@ jobs:
     name: Test on Docker Hub
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Run action
         uses: ./test/test_on_hub/
         with:

@@ -11,7 +11,7 @@ jobs:
         hide-repository: [true, false]
         title: ['', 'Ok_?@ sadadsa 😁']
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # All history + tags
       - name: Run action
