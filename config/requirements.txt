@@ -8,7 +8,7 @@ mkdocs-git-authors-plugin==0.6.4
 mkdocs-print-site-plugin==2.3.2
 mkdocs-localsearch==0.9.1
 mkdocs-literate-nav==0.4.1
-mkdocs-jupyter==0.20.0
+mkdocs-jupyter==0.20.1
 
 plantuml-markdown==3.5.2
 markdown-include==0.6.0
