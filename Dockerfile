@@ -1,4 +1,4 @@
-FROM python:3.10.2-alpine
+FROM python:3.10.4-alpine
 
 # Download PlantUML + dependencies
 RUN mkdir -p /usr/share/man/man1 && apk add --no-cache openjdk8 graphviz && \
