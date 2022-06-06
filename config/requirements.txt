@@ -5,7 +5,7 @@ mkdocs-minify-plugin==0.5.0
 #mkdocs-drawio-exporter
 mkdocs-git-revision-date-localized-plugin==1.0.1
 mkdocs-git-authors-plugin==0.6.4
-mkdocs-print-site-plugin==2.3.3
+mkdocs-print-site-plugin==2.3.4
 mkdocs-localsearch==0.9.1
 mkdocs-literate-nav==0.4.1
 mkdocs-jupyter==0.21.0
