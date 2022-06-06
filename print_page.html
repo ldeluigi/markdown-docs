@@ -408,7 +408,7 @@
 </code></pre></div>
 This means that every markdown file inside the <code>doc</code> folder in the current workspace will be converted and mapped to a corresponding HTML file inside the <code>generated</code> directory. You can pass <code>.</code> as src to search the entire repo for markdown files. <code>dst</code> folder will be emptied before generation.</p>
 <h4 id="index-additional-information">Additional information</h4>
-<p>In order to make the "last edit date" plugin work you need to clone the full history of your documentation inside your CI. With GitHub actions this can be done using the option <code>fetch-depth: 0</code> with the <code>actions/checkout@v2</code> step.</p>
+<p>In order to make the "last edit date" plugin work you need to clone the full history of your documentation inside your CI. With GitHub actions this can be done using the option <code>fetch-depth: 0</code> with the <code>actions/checkout@v3</code> step.</p>
 <h4 id="index-complete-usage-example-with-all-the-parameters">Complete usage example with all the parameters</h4>
 <div class="highlight"><pre><span></span><code><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Generate HTML from Markdown</span><span class="w"></span>
 <span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ldeluigi/markdown-docs@latest</span><span class="w"></span>

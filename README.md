@@ -44,7 +44,7 @@ To use **markdown-docs** as a GitHub Action, use the following syntax in your wo
 This means that every markdown file inside the `doc` folder in the current workspace will be converted and mapped to a corresponding HTML file inside the `generated` directory. You can pass `.` as src to search the entire repo for markdown files. `dst` folder will be emptied before generation.
 
 #### Additional information
-In order to make the "last edit date" plugin work you need to clone the full history of your documentation inside your CI. With GitHub actions this can be done using the option `fetch-depth: 0` with the `actions/checkout@v2` step.
+In order to make the "last edit date" plugin work you need to clone the full history of your documentation inside your CI. With GitHub actions this can be done using the option `fetch-depth: 0` with the `actions/checkout@v3` step.
 
 #### Complete usage example with all the parameters
 ```yaml
