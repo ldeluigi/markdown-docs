@@ -11,4 +11,4 @@ mkdocs-literate-nav==0.4.1
 mkdocs-jupyter==0.21.0
 
 plantuml-markdown==3.5.3
-markdown-include==0.6.0
+markdown-include==0.7.0
