@@ -1,6 +1,8 @@
 #!/bin/sh
 # Fail script if a command fails
 set -e
+# Ignore safe directory errors
+git config --global --add safe.directory '*'
 # Setup
 WORKSPACE="${WORKSPACE:-${GITHUB_WORKSPACE:-/}}"
 if [ "${HIDE_REPOSITORY}" = "true" ]; then
