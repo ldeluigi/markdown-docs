@@ -93,9 +93,10 @@ ENV LANGUAGE=en
 ENV ICON=library
 ENV PRIMARY_COLOR=indigo
 ENV SECONDARY_COLOR=indigo
+ENV HIDE_REPOSITORY=false
 ```
 * `WORKSPACE` selects the path in which the main script is run. This path should be the root of your working directory, inside which there are both the source folder and the destination folder.
-* `TITLE`, `LANGUAGE`, `ICON`, `PRIMARY_COLOR`, `SECONDARY_COLOR` are all described in [this section](#additional-parameters-info).
+* `TITLE`, `LANGUAGE`, `ICON`, `PRIMARY_COLOR`, `SECONDARY_COLOR`, `HIDE_REPOSITORY` are all described in [this section](#additional-parameters-info).
 
 
 ## Notes about documenting your software
