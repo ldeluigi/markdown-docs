@@ -1,8 +1,8 @@
-FROM python:3.10.6-alpine
+FROM python:3.11.0-alpine
 
 # Download PlantUML + dependencies
 RUN mkdir -p /usr/share/man/man1 && apk add --no-cache openjdk8 graphviz && \
-  wget -q -O plantuml.jar https://netcologne.dl.sourceforge.net/project/plantuml/plantuml.jar && \
+  wget -q -O plantuml.jar https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar && \
   mkdir -p /opt/plantuml && mv plantuml.jar /opt/plantuml/plantuml.jar
 ENV ALLOW_PLANTUML_INCLUDE=true
 COPY script/plantuml.sh /usr/local/bin/plantuml 
