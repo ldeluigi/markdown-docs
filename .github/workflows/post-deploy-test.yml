@@ -2,6 +2,9 @@ name: Post-deploy Test
 
 on:
   workflow_call:
+  push:
+    paths:
+      - ".github/workflows/post-deploy-test.yml"
 
 jobs:
   test1:
