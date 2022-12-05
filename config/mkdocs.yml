@@ -60,11 +60,6 @@ plugins:
       show_line_count: true
       count_empty_lines: false
       fallback_to_empty: true
-  - minify: # Minifies HTML
-      minify_html: false
-      minify_js: true
-      htmlmin_opts:
-          remove_comments: true
   - print-site: # Must be the last one
       add_to_navigation: true
       print_page_title: 'Print as PDF'
@@ -92,6 +87,7 @@ markdown_extensions:
       title: UML diagram                        # default title (tooltip) for diagram images
       alt: UML diagram image                    # default `alt` attribute for diagram images
       priority: 100                             # plugin priority; the higher, the sooner will be applied (default 23)
+      theme: plain                              # default PlantUML theme
   - pymdownx.arithmatex:
       generic: true
   - admonition
