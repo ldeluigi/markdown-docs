@@ -5,7 +5,7 @@ RUN mkdir -p /usr/share/man/man1 && apk add --no-cache openjdk8 graphviz && \
   wget -q -O plantuml.jar https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar && \
   mkdir -p /opt/plantuml && mv plantuml.jar /opt/plantuml/plantuml.jar
 ENV ALLOW_PLANTUML_INCLUDE=true
-COPY --chown=root script/plantuml.sh /usr/local/bin/plantuml 
+COPY --chmod=777 script/plantuml.sh /usr/local/bin/plantuml 
 
 # Download Python Markdown + dependencies
 COPY config/requirements.txt /usr/local/src/requirements.txt
@@ -20,5 +20,5 @@ COPY config/theme.main.html /usr/local/src/theme.main.html
 COPY config/theme.404.html /usr/local/src/theme.404.html
 
 # Entrypoint
-COPY --chown=root script/makedocs.sh /usr/local/bin/makedocs
+COPY --chmod=777 script/makedocs.sh /usr/local/bin/makedocs
 ENTRYPOINT [ "makedocs" ]
