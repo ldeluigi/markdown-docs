@@ -56,7 +56,7 @@ inputs:
     default: ${{ github.repository }}
 runs:
   using: 'docker'
-  image: 'docker://deloo/markdown-docs:0.6.5'
+  image: 'docker://deloo/markdown-docs:0.6.6'
   env:
     TITLE: ${{ inputs.title }}
     LANGUAGE: ${{ inputs.language }}
