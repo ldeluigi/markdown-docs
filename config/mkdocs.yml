@@ -32,7 +32,7 @@ plugins:
         - .git/*
   - search:
       lang: !ENV [LANGUAGE, "en"]
-  - localsearch
+  - offline
   # - drawio-exporter: # Allows embeddding .drawio files
   #     drawio_executable: /drawio.AppImage
   #     # Diagrams are cached to speed up site generation. The default path is
