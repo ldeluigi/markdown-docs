@@ -99,10 +99,8 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.highlight
-  - pymdownx.superfences
   - pymdownx.inlinehilite
   - pymdownx.keys
-  - pymdownx.superfences
   - pymdownx.tabbed
   - pymdownx.tasklist:
       custom_checkbox: true
