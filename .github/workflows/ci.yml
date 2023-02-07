@@ -33,7 +33,7 @@ jobs:
               - '*.md'
   test:
     name: Tests on self
-    uses: ldeluigi/markdown-docs/.github/workflows/test.yml@master
+    uses: ./.github/workflows/test.yml
 
   release:
     name: GitHub Release Job
@@ -108,7 +108,7 @@ jobs:
   post-deploy-test:
     name: Post-deploy test
     needs: [push-to-registries]
-    uses: ldeluigi/markdown-docs/.github/workflows/post-deploy-test.yml@master
+    uses: ./.github/workflows/post-deploy-test.yml
 
   update-gh-pages:
     name: Generate and upload new GitHub Pages
