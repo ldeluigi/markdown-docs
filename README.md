@@ -27,7 +27,7 @@ This repository contains the definition of a Docker image that can be used both 
 ## Supported plugins
 - **git-revision-date-localized**: Displays the last edit date of the page. The date appears automatically at the bottom if a git history is found. See the [docs](https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/index.html) for more information.
 - **git-authors-plugin**: Displays git authors of the page. Authors appear automatically at the bottom if a git history is found. See the [docs](https://timvink.github.io/mkdocs-git-authors-plugin/index.html) for more information.
-- **notebooks**: `.ipynb` file rendering support.
+<!-- - **notebooks**: `.ipynb` file rendering support. -->
 
 ## Usage
 You can use **markdown-docs** both as a [GitHub Acton](#as-github-action) or a [Docker builder stage](#as-docker-builder) inside your dockerfile.

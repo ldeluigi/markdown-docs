@@ -1,13 +1,12 @@
 mkdocs==1.4.2
 mkdocs-exclude==1.0.2
-mkdocs-material==8.5.10
+mkdocs-material==9.0.11
 #mkdocs-drawio-exporter
 mkdocs-git-revision-date-localized-plugin==1.1.0
 mkdocs-git-authors-plugin==0.7.0
 mkdocs-print-site-plugin==2.3.4
-mkdocs-localsearch==0.9.2
-mkdocs-literate-nav==0.5.0
-mkdocs-jupyter==0.22.0
+mkdocs-literate-nav==0.6.0
+#mkdocs-jupyter==0.22.0
 
-plantuml-markdown==3.7.3
-markdown-include==0.8.0
+plantuml-markdown==3.8.1
+markdown-include==0.8.1
