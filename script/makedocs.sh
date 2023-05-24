@@ -27,7 +27,7 @@ if [ ! -z "${GITHUB_SERVER_URL}" -a ! -z "${GITHUB_REPOSITORY}" ] ; then
 fi
 export SRC=${WORKSPACE%/}/${SRC#/}
 # PlantUML !include root folder
-export PLANTUML_JAVAOPTS="-Dplantuml.include.path=${SRC}"
+export PLANTUML_CMD="java -Dplantuml.include.path=${SRC} -jar /opt/plantuml/plantuml.jar"
 # Destination folder
 RELATIVE_DST=${2#.}
 RELATIVE_DST=${RELATIVE_DST#/}

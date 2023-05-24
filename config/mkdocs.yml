@@ -83,11 +83,12 @@ markdown_extensions:
   - plantuml_markdown:
       cachedir: /tmp                            # set a non-empty value to enable caching
       format: svg                               # default diagram image format
-      classes: UML                              # default diagram classes
+      classes: uml                              # default diagram classes
       title: UML diagram                        # default title (tooltip) for diagram images
       alt: UML diagram image                    # default `alt` attribute for diagram images
       priority: 100                             # plugin priority; the higher, the sooner will be applied (default 23)
       theme: plain                              # default PlantUML theme
+      plantuml_cmd: !ENV PLANTUML_CMD           # path to the PlantUML jar file
   - pymdownx.arithmatex:
       generic: true
   - admonition
