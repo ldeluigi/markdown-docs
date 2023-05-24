@@ -19,5 +19,6 @@ COPY config/theme.main.html /usr/local/src/theme.main.html
 COPY config/theme.404.html /usr/local/src/theme.404.html
 
 # Entrypoint
-COPY --chown=root:root script/makedocs.sh /usr/local/bin/makedocs
+COPY script/makedocs.sh /usr/local/bin/makedocs
+RUN chmod +x /usr/local/bin/makedocs
 ENTRYPOINT [ "makedocs" ]
