@@ -3,7 +3,7 @@ mkdocs-exclude==1.0.2
 mkdocs-material==9.1.14
 #mkdocs-drawio-exporter
 mkdocs-git-revision-date-localized-plugin==1.2.0
-mkdocs-git-authors-plugin==0.7.0
+mkdocs-git-authors-plugin==0.7.1
 mkdocs-print-site-plugin==2.3.4
 mkdocs-literate-nav==0.6.0
 mkdocs-jupyter==0.24.1
