@@ -5,6 +5,8 @@ on:
   push:
     paths:
       - ".github/workflows/post-deploy-test.yml"
+    tags-ignore:
+      - "*"
 
 jobs:
   test1:
