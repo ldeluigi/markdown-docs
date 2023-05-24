@@ -43,6 +43,8 @@ jobs:
       - test
     runs-on: ubuntu-20.04
     concurrency: release
+    permissions:
+      contents: write
     steps:
       - uses: EasyDesk/action-semver-release@v1
         with:
