@@ -1,6 +1,6 @@
 mkdocs==1.5.2
 mkdocs-exclude==1.0.2
-mkdocs-material==9.2.5
+mkdocs-material==9.2.7
 #mkdocs-drawio-exporter
 mkdocs-git-revision-date-localized-plugin==1.2.0
 mkdocs-git-authors-plugin==0.7.2
