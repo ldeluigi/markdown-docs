@@ -64,7 +64,7 @@ jobs:
     concurrency: registries
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
@@ -121,7 +121,7 @@ jobs:
     concurrency: github-pages
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Run action
