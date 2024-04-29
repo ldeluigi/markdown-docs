@@ -6,7 +6,7 @@ mkdocs-git-revision-date-localized-plugin==1.2.4
 mkdocs-git-authors-plugin==0.8.0
 mkdocs-print-site-plugin==2.3.6
 mkdocs-literate-nav==0.6.1
-mkdocs-jupyter==0.24.6
+mkdocs-jupyter==0.24.7
 
 plantuml-markdown==3.9.6
 markdown-include==0.8.1
