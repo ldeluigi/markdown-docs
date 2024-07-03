@@ -23,6 +23,7 @@ This repository contains the definition of a Docker image that can be used both 
 - **abbreviations**: Enables explanations for abbrevations. See the [docs](https://python-markdown.github.io/extensions/abbreviations/).
 - **footnotes**: Enables footnotes. See the [docs](https://python-markdown.github.io/extensions/footnotes/).
 - **literate-nav**: Allows to customize navigation menus for each folder. The navigation menu must be specified inside a `SUMMARY.md` file. For more information see the [docs](https://oprypin.github.io/mkdocs-literate-nav/#usage).
+- **nl2br**: Enables newlines to be converted to `<br>` tags. See the [docs](https://python-markdown.github.io/extensions/nl2br/).
 - **callouts**: Enables Obsidian-styled callout blocks. For more information, see the [docs](https://github.com/sondregronas/mkdocs-callouts#usage).
 
 ## Supported plugins
