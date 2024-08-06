@@ -8,5 +8,5 @@ mkdocs-print-site-plugin==2.5.0
 mkdocs-literate-nav==0.6.1
 mkdocs-jupyter==0.24.8
 mkdocs-callouts==1.13.2
-plantuml-markdown==3.9.8
+plantuml-markdown==3.10.1
 markdown-include==0.8.1
