@@ -5,7 +5,7 @@ mkdocs-material==9.6.8
 mkdocs-git-revision-date-localized-plugin==1.4.5
 mkdocs-git-authors-plugin==0.9.4
 mkdocs-print-site-plugin==2.7.1
-mkdocs-literate-nav==0.6.1
+mkdocs-literate-nav==0.6.2
 mkdocs-jupyter==0.25.1
 mkdocs-callouts==1.16.0
 plantuml-markdown==3.11.1
