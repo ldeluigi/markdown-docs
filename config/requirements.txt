@@ -4,7 +4,7 @@ mkdocs-material==9.6.16
 #mkdocs-drawio-exporter
 mkdocs-git-revision-date-localized-plugin==1.4.7
 mkdocs-git-authors-plugin==0.10.0
-mkdocs-print-site-plugin==2.7.3
+mkdocs-print-site-plugin==2.8
 mkdocs-literate-nav==0.6.2
 mkdocs-jupyter==0.25.1
 mkdocs-callouts==1.16.0
